@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+/* Kanit supports Thai; loaded site-wide via this theme */
+
+/* Luxury Green + White palette overrides */
+:root {
+  --lux-green: #0f5132;           /* rich, luxury green */
+  --lux-green-90: rgba(15,81,50,0.92); /* subtle alpha for overlays */
+  --white-85: rgba(255,255,255,0.85);
+}
+
+/* Selection color */
+::selection { background: var(--lux-green); color: #fff; }
+::-moz-selection { background: var(--lux-green); color: #fff; }
+
+/* Links and text buttons */
+a, .text-button a { color: var(--lux-green) !important; }
+
+/* Border button */
+.border-button a {
+  color: var(--lux-green) !important;
+  border-color: var(--lux-green) !important;
+}
+.border-button a:hover {
+  background-color: var(--lux-green) !important;
+  border-color: var(--lux-green) !important;
+  color: #fff !important;
+}
+
+/* Main buttons */
+.main-button a {
+  background-color: var(--lux-green) !important;
+  border-color: var(--lux-green) !important;
+  color: #fff !important;
+}
+.main-button a:hover {
+  background-color: #fff !important;
+  color: var(--lux-green) !important;
+  border-color: #fff !important;
+}
+
+/* Header: keep overall background white per request */
+.header-area,
+.background-header,
+.header-area.header-sticky { background-color: #fff !important; }
+
+/* Header nav links and hamburger in green for contrast on white */
+.header-area .main-nav .nav li a { color: var(--lux-green) !important; }
+.background-header .main-nav .nav li a { color: var(--lux-green) !important; }
+.header-area .main-nav .nav li a.active::after { background-color: var(--lux-green) !important; }
+.header-area .main-nav .menu-trigger span,
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after { background-color: var(--lux-green) !important; }
+.background-header .main-nav .menu-trigger span,
+.background-header .main-nav .menu-trigger span:before,
+.background-header .main-nav .menu-trigger span:after { background-color: var(--lux-green) !important; }
+
+/* Ensure page background is white and Thai-friendly font is used */
+html, body {
+  background: #fff !important;
+  font-family: 'Kanit', 'Poppins', sans-serif !important;
+}
+
+/* Second-page heading button styling */
+.second-page-heading .main-button a {
+  border-color: #fff !important;
+  color: var(--lux-green) !important;
+  background-color: #fff !important;
+}
+.second-page-heading .main-button a:hover {
+  border-color: var(--lux-green) !important;
+  background-color: var(--lux-green) !important;
+  color: #fff !important;
+}
+
+/* Info blocks on reservation page */
+.more-info .info-item i { color: var(--lux-green) !important; }
+.more-info .info-item a { color: var(--lux-green) !important; }
+#section-1 .more-info i {
+  color: var(--lux-green) !important;
+  border-color: var(--lux-green) !important;
+}
+
+/* Team cards (about: สมาชิกผู้ดำเนินโครงการ) */
+.weekly-offers .text.team-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 18px 18px 16px 18px;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  height: 320px;      /* fixed height like the earlier cards */
+  min-height: 320px;
+}
+
+.weekly-offers .text.team-card .avatar {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  position: absolute;
+  top: -48px;
+  left: 24px;
+}
+
+.weekly-offers .text.team-card h4 {
+  margin-top: 0; /* no avatar in this section */
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.weekly-offers .text.team-card h4 span {
+  display: block;
+  font-weight: 400;
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.weekly-offers .text.team-card h6 {
+  margin: 6px 0 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.weekly-offers .text.team-card .line-dec {
+  height: 2px;
+  background: linear-gradient(90deg, #34d399, #10b981);
+  width: 100%;
+  margin: 8px 0 10px;
+  border-radius: 2px;
+}
+
+.weekly-offers .text.team-card ul {
+  margin: 0 0 10px;
+  overflow: hidden;
+}
+
+.weekly-offers .text.team-card ul li {
+  color: #4b5563;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.weekly-offers .text.team-card ul li i {
+  color: #10b981;
+  margin-right: 8px;
+}
+
+.weekly-offers .text.team-card .contact-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto; /* push actions to bottom for equal heights */
+}
+
+/* Keep carousel items consistent height */
+.weekly-offers .owl-weekly-offers .item .thumb {
+  padding: 12px;
+}
+
+@media (max-width: 991.98px) {
+  /* Let cards auto-size on small screens */
+  .weekly-offers .text.team-card {
+    height: auto;
+    min-height: 0;
+  }
+}
+
+.weekly-offers .text.team-card .contact-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #10b981;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.weekly-offers .text.team-card .contact-actions a.secondary {
+  background: #111827;
+}
+
+.weekly-offers .text.team-card .contact-actions a:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(16,185,129,0.25);
+}
+
+/* Grid variant: 3-column equal-height cards without images */
+.weekly-offers .team-card-eq {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.weekly-offers .team-card-eq h4 { font-size: 20px; line-height: 1.35; }
+.weekly-offers .team-card-eq h4 span { display:block; color:#6b7280; font-size:14px; font-weight:400; margin-top:4px; }
+.weekly-offers .team-card-eq h6 { margin:10px 0; font-size:14px; color:#374151; }
+.weekly-offers .team-card-eq .line-dec { height:2px; background:linear-gradient(90deg,#34d399,#10b981); width:100%; margin:12px 0 14px; border-radius:2px; }
+.weekly-offers .team-card-eq ul { margin:0 0 10px; }
+.weekly-offers .team-card-eq ul li { color:#4b5563; font-size:14px; padding:4px 0; }
+.weekly-offers .team-card-eq ul li i { color:#10b981; margin-right:8px; }
+.weekly-offers .team-card-eq .contact-actions { margin-top:auto; display:flex; gap:10px; flex-wrap:wrap; }
+.weekly-offers .team-card-eq .contact-actions a { display:inline-flex; align-items:center; gap:8px; background:#10b981; color:#fff; padding:8px 12px; border-radius:10px; font-size:14px; transition:transform .15s ease, box-shadow .15s ease; }
+.weekly-offers .team-card-eq .contact-actions a.secondary { background:#111827; }
+.weekly-offers .team-card-eq .contact-actions a:hover { transform:translateY(-1px); box-shadow:0 8px 18px rgba(16,185,129,0.25); }
+#section-1 .more-info h4 { color: var(--lux-green) !important; }
+
+/* Reservation form accents */
+.reservation-form #reservation-form h4 em { color: var(--lux-green) !important; }
+.reservation-form #reservation-form button {
+  color: #fff !important;
+  background-color: var(--lux-green) !important;
+  border-color: var(--lux-green) !important;
+}
+.reservation-form #reservation-form button:hover { opacity: .9 !important; }
+
+/* Optional: update any slider option default background variable if present */
+body .options .option { --defaultBackground: var(--lux-green) !important; }
+
+/* Objectives list styling */
+.about-objectives .objective-list { display: grid; gap: 8px; }
+.about-objectives .objective-item { display: flex; gap: 10px; align-items: flex-start; color: #1f2937; font-size: 16px; }
+.about-objectives .objective-item i { color: #10b981; margin-top: 2px; }
+.about-objectives h2 { color: #0f5132; }
