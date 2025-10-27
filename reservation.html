@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>รายชื่อสมาชิก - โครงการหมูหลุม</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+    <!-- Luxury Green theme overrides -->
+    <link rel="stylesheet" href="assets/css/theme-lux-green.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <!-- Leaflet map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="deals.html">การเรียนรู้</a></li>
+                        <li><a href="reservation.html" class="active">รายซื่อสมาชิก</a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="second-page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>ลงทะเบียนสมาชิกโครงการหมูหลุม</h4>
+          <h2>รายชื่อสมาชิกและการสมัครเข้าร่วม</h2>
+          <p>กรอกข้อมูลเพื่อเข้าร่วมโครงการ ส่งเสริมการเลี้ยงหมูหลุม ลดต้นทุน และเพิ่มรายได้อย่างยั่งยืน</p>
+          <div class="main-button"><a href="about.html">อ่านเพิ่มเติม</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Member Directory: Search + Table + Cards -->
+  <section class="member-directory py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-lg-12">
+          <div class="section-heading text-center">
+            <h2>รายชื่อสมาชิกโครงการ</h2>
+            <p>ค้นหาด้วยชื่อ และกรองตามอำเภอในภาคเหนือ</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="row g-3 align-items-end mb-4">
+        <div class="col-md-6">
+          <label for="member-search" class="form-label">ค้นหาชื่อสมาชิก</label>
+          <input id="member-search" type="text" class="form-control" placeholder="พิมพ์ชื่อ เช่น สมชาย">
+        </div>
+        <div class="col-md-6">
+          <label for="district-filter" class="form-label">อำเภอ (ภาคเหนือ)</label>
+          <select id="district-filter" class="form-select">
+            <option value="">ทั้งหมด</option>
+            <optgroup label="เชียงใหม่">
+              <option>เมืองเชียงใหม่</option>
+              <option>สันทราย</option>
+              <option>แม่ริม</option>
+              <option>ดอยสะเก็ด</option>
+              <option>หางดง</option>
+            </optgroup>
+            <optgroup label="เชียงราย">
+              <option>เมืองเชียงราย</option>
+              <option>แม่สาย</option>
+              <option>แม่จัน</option>
+              <option>เวียงชัย</option>
+            </optgroup>
+            <optgroup label="ลำพูน">
+              <option>เมืองลำพูน</option>
+              <option>ป่าซาง</option>
+            </optgroup>
+            <optgroup label="ลำปาง">
+              <option>เมืองลำปาง</option>
+              <option>ห้างฉัตร</option>
+            </optgroup>
+            <optgroup label="แพร่">
+              <option>เมืองแพร่</option>
+            </optgroup>
+            <optgroup label="น่าน">
+              <option>เมืองน่าน</option>
+            </optgroup>
+            <optgroup label="พะเยา">
+              <option>เมืองพะเยา</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <!-- Members Table -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div class="table-responsive shadow-sm rounded" style="border-radius: 12px; overflow: hidden;">
+            <table class="table table-hover table-striped align-middle mb-0">
+              <thead class="table-success">
+                <tr>
+                  <th style="width:72px;">รูป</th>
+                  <th>ชื่อ</th>
+                  <th>เครือข่าย</th>
+                  <th>อำเภอ</th>
+                  <th>สถานะ</th>
+                </tr>
+              </thead>
+              <tbody id="member-table-body">
+                <tr class="member-row" data-name="สมชาย ใจดี" data-district="สันทราย" data-status="pass">
+                  <td><img src="assets/images/deals-01.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
+                  <td>สมชาย ใจดี</td>
+                  <td>เครือข่ายหมูหลุมเชียงใหม่</td>
+                  <td>สันทราย</td>
+                  <td><span class="badge bg-success">ผ่านการรับรอง</span></td>
+                </tr>
+                <tr class="member-row" data-name="ศิรินภา มีสุข" data-district="แม่ริม" data-status="pending">
+                  <td><img src="assets/images/deals-02.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
+                  <td>ศิรินภา มีสุข</td>
+                  <td>เครือข่ายการเลี้ยงอินทรีย์</td>
+                  <td>แม่ริม</td>
+                  <td><span class="badge bg-warning text-dark">ยังไม่ผ่านการรับรอง</span></td>
+                </tr>
+                <tr class="member-row" data-name="มนตรี คำแหง" data-district="เมืองเชียงราย" data-status="pass">
+                  <td><img src="assets/images/deals-03.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
+                  <td>มนตรี คำแหง</td>
+                  <td>เครือข่ายหมูหลุมเชียงราย</td>
+                  <td>เมืองเชียงราย</td>
+                  <td><span class="badge bg-success">ผ่านการรับรอง</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Map (Northern Thailand) -->
+      <div class="row mb-5">
+        <div class="col-12">
+          <div id="member-map" class="shadow-sm" style="height:300px;border-radius:12px;overflow:hidden;"></div>
+        </div>
+      </div>
+
+      <!-- Member Cards -->
+      <div class="row g-4" id="member-card-grid">
+        <div class="col-sm-6 col-lg-4 member-card" data-name="สมชาย ใจดี" data-district="สันทราย" data-status="pass">
+          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
+            <img src="assets/images/deals-01.jpg" class="card-img-top" alt="สมชาย ใจดี" style="height:180px;object-fit:cover;">
+            <div class="card-body">
+              <h5 class="card-title mb-1">สมชาย ใจดี</h5>
+              <p class="text-muted mb-2">เครือข่ายหมูหลุมเชียงใหม่</p>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-success">ผ่านการรับรอง</span>
+                <span class="badge bg-secondary">สันทราย</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 member-card" data-name="ศิรินภา มีสุข" data-district="แม่ริม" data-status="pending">
+          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
+            <img src="assets/images/deals-02.jpg" class="card-img-top" alt="ศิรินภา มีสุข" style="height:180px;object-fit:cover;">
+            <div class="card-body">
+              <h5 class="card-title mb-1">ศิรินภา มีสุข</h5>
+              <p class="text-muted mb-2">เครือข่ายการเลี้ยงอินทรีย์</p>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-warning text-dark">ยังไม่ผ่านการรับรอง</span>
+                <span class="badge bg-secondary">แม่ริม</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 member-card" data-name="มนตรี คำแหง" data-district="เมืองเชียงราย" data-status="pass">
+          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
+            <img src="assets/images/deals-03.jpg" class="card-img-top" alt="มนตรี คำแหง" style="height:180px;object-fit:cover;">
+            <div class="card-body">
+              <h5 class="card-title mb-1">มนตรี คำแหง</h5>
+              <p class="text-muted mb-2">เครือข่ายหมูหลุมเชียงราย</p>
+              <div class="d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-success">ผ่านการรับรอง</span>
+                <span class="badge bg-secondary">เมืองเชียงราย</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <footer>
+    <div class="container">
+      <div class="row">
+                <div class="col-lg-12">
+          <p>โครงการพัฒนาเกษตรกรผู้เลี้ยงหมูหลุม — สงวนลิขสิทธิ์ © 2025<br>พัฒนาและดูแลโดย ทีมโครงการหมูหลุม</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <!-- Leaflet map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <script>
+    // Simple filter for members table and cards
+    (function(){
+      const $search = document.getElementById('member-search');
+      const $district = document.getElementById('district-filter');
+      if(!$search || !$district) return;
+
+      const normalize = (s) => (s || '').toString().trim().toLowerCase();
+
+      function applyFilter(){
+        const q = normalize($search.value);
+        const d = normalize($district.value);
+
+        // Table rows
+        document.querySelectorAll('.member-row').forEach(row => {
+          const name = normalize(row.getAttribute('data-name'));
+          const dist = normalize(row.getAttribute('data-district'));
+          const okName = !q || name.includes(q);
+          const okDist = !d || dist === d;
+          row.style.display = (okName && okDist) ? '' : 'none';
+        });
+
+        // Cards
+        document.querySelectorAll('.member-card').forEach(card => {
+          const name = normalize(card.getAttribute('data-name'));
+          const dist = normalize(card.getAttribute('data-district'));
+          const okName = !q || name.includes(q);
+          const okDist = !d || dist === d;
+          card.style.display = (okName && okDist) ? '' : 'none';
+        });
+      }
+
+      $search.addEventListener('input', applyFilter);
+      $district.addEventListener('change', applyFilter);
+    })();
+  </script>
+
+  <script>
+    // Initialize map and bind markers to filter cards by district
+    (function(){
+      const mapEl = document.getElementById('member-map');
+      if(!mapEl || typeof L === 'undefined') return;
+
+      const thaiBounds = L.latLngBounds([5.5, 97.3], [20.7, 105.9]);
+      const map = L.map('member-map', {
+        maxBounds: thaiBounds,
+        maxBoundsViscosity: 1.0,
+        minZoom: 5,
+        worldCopyJump: false
+      }).setView([18.7883, 99.0], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Approximate coordinates for selected northern districts
+      const coords = {
+        'สันทราย': [18.833, 99.028],
+        'แม่ริม': [18.939, 98.944],
+        'เมืองเชียงใหม่': [18.788, 98.985],
+        'เมืองเชียงราย': [19.910, 99.839]
+      };
+
+      const seen = new Set();
+      document.querySelectorAll('.member-card').forEach(card => {
+        const district = (card.getAttribute('data-district')||'').trim();
+        if(!district || seen.has(district) || !coords[district]) return;
+        seen.add(district);
+        const marker = L.marker(coords[district]).addTo(map).bindPopup(district);
+        marker.on('click', () => {
+          const sel = document.getElementById('district-filter');
+          if(sel){ sel.value = district; sel.dispatchEvent(new Event('change')); }
+          const grid = document.getElementById('member-card-grid');
+          if(grid){ grid.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+
+      // Fit bounds to markers if any
+      if(seen.size){
+        const latlngs = Array.from(seen).map(d => coords[d]);
+        map.fitBounds(latlngs, { padding: [20,20] });
+      } else {
+        map.fitBounds(thaiBounds, { padding: [20,20] });
+      }
+    })();
+  </script>
+
+  <script>
+    $(".option").click(function(){
+      $(".option").removeClass("active");
+      $(this).addClass("active"); 
+    });
+  </script>
+
+  </body>
+
+</html>
