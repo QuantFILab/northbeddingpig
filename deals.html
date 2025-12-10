@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="th">
 
   <head>
@@ -8,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <title>การเรียนรู้ - โครงการหมูหลุม</title>
+    <title>การเรียนรู้ - ฟาร์มหมูหลุม</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,14 @@
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <style>
+      /* Compact deal buttons */
+      .main-button a.btn-compact {
+        padding: 6px 14px;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+    </style>
 <!--
 
 TemplateMo 580 Woox Travel
@@ -61,7 +69,8 @@ https://templatemo.com/tm-580-woox-travel
                         <li><a href="index.html">หน้าแรก</a></li>
                         <li><a href="about.html">เกี่ยวกับเรา</a></li>
                         <li><a href="deals.html" class="active">การเรียนรู้</a></li>
-                        <li><a href="reservation.html">รายซื่อสมาชิก</a></li>
+                        <li><a href="research.html">คลังวิจัย</a></li>
+                        <li><a href="reservation.html">รายชื่อสมาชิก</a></li>
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -78,9 +87,9 @@ https://templatemo.com/tm-580-woox-travel
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h4>แผนการเรียนรู้และกิจกรรม</h4>
-          <h2>พัฒนาทักษะการเลี้ยงหมูหลุม</h2>
-          <div class="border-button"><a href="about.html">อ่านเพิ่มเติม</a></div>
+          <h4>การอบรมณ์</h4>
+          <h2>เลือกเรียนรู้หมูหลุมและเกษตรอย่างมั่นใจ</h2>
+          <div class="border-button"><a href="about.html">ดูรายละเอียดเพิ่มเติม</a></div>
         </div>
       </div>
     </div>
@@ -93,32 +102,32 @@ https://templatemo.com/tm-580-woox-travel
           <form id="search-form" name="gs" method="submit" role="search" action="#">
             <div class="row">
               <div class="col-lg-2">
-                <h4>กรองหัวข้อการเรียนรู้:</h4>
+                <h4>ค้นหาหมวด/ระดับ:</h4>
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-3">
                   <fieldset>
                       <select name="Topic" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
-                          <option selected>หัวข้อ</option>
-                          <option value="พื้นฐานหมูหลุม">พื้นฐานหมูหลุม</option>
-                          <option value="คอกและวัสดุรองพื้น">คอกและวัสดุรองพื้น</option>
-                          <option value="อาหารและสุขภาพ">อาหารและสุขภาพ</option>
-                          <option value="การตลาดและบัญชี">การตลาดและบัญชี</option>
+                          <option value="" selected>เลือกหมวด</option>
+                          <option value="basic">พื้นฐานหมูหลุม</option>
+                          <option value="health">สุขภาพสัตว์</option>
+                          <option value="housing">การจัดการโรงเรือน</option>
+                          <option value="travel">ท่องเที่ยว</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">
+                  <fieldset>
+                      <select name="Level" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
+                          <option value="" selected>เลือกระดับ</option>
+                          <option value="beginner">เริ่มต้น</option>
+                          <option value="intermediate">กลาง</option>
+                          <option value="advanced">ขั้นสูง</option>
                       </select>
                   </fieldset>
               </div>
               <div class="col-lg-4">
                   <fieldset>
-                      <select name="Level" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
-                          <option selected>ระดับ</option>
-                          <option value="พื้นฐาน">พื้นฐาน</option>
-                          <option value="กลาง">กลาง</option>
-                          <option value="เชิงลึก">เชิงลึก</option>
-                      </select>
-                  </fieldset>
-              </div>
-              <div class="col-lg-2">                        
-                  <fieldset>
-                      <button class="border-button">ค้นหา</button>
+                      <input type="text" id="searchKeyword" class="form-control" placeholder="ค้นหาหลักสูตรด้วยคำค้น (เช่น หมูหลุม, สุขภาพ, โรงเรือน)">
                   </fieldset>
               </div>
             </div>
@@ -127,18 +136,17 @@ https://templatemo.com/tm-580-woox-travel
       </div>
     </div>
   </div>
-
   <div class="amazing-deals">
     <div class="container">
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
-            <h2>หัวข้อการเรียนรู้หลัก</h2>
-            <p>ปรับเนื้อหาให้เหมาะกับบริบทของพื้นที่ และลงมือปฏิบัติจริง</p>
+            <h2>การอบรมณ์</h2>
+            <p>เลือกข้อเสนอที่ตรงกับหมวดและระดับที่คุณต้องการค้นหา</p>
           </div>
         </div>
         <div class="col-lg-6 col-sm-6">
-          <div class="item">
+          <div class="item" data-topic="basic" data-level="beginner">
             <div class="row">
               <div class="col-lg-6">
                 <div class="image">
@@ -147,21 +155,25 @@ https://templatemo.com/tm-580-woox-travel
               </div>
               <div class="col-lg-6 align-self-center">
                 <div class="content">
-                  <span class="info">หัวข้ออบรม</span>
-                  <h4>พื้นฐานหมูหลุมและแนวคิด</h4>
+                  <span class="info">ฟรีสำหรับบุคคลทั่วไป</span>
+                  <h4>อบรมพื้นฐาน</h4>
                   <div class="row">
                     <div class="col-6">
                       <i class="fa fa-clock"></i>
-                      <span class="list">เชิงทฤษฎี + ปฏิบัติ</span>
+                      <span class="list">2 - 4 มรกราคม 2569</span>
                     </div>
                     <div class="col-6">
                       <i class="fa fa-map"></i>
-                      <span class="list">เอกสารประกอบ</span>
+                      <span class="list">มหาวิทยาลัยเชียงใหม่</span>
                     </div>
                   </div>
-                  <p>ทำความเข้าใจหลักการ ระบบนิเวศในคอกหมูหลุม และข้อควรระวัง</p>
+                  <p>คอร์สเริ่มต้นสำหรับผู้สนใจพื้นฐานหมูหลุม พร้อมสาธิตจริงในพื้นที่.</p>
+                  <div class="filter-labels mt-2">
+                    <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+                    <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+                  </div>
                   <div class="main-button">
-                    <a href="reservation.html">ลงทะเบียนเข้าร่วม</a>
+                    <a class="btn-compact" href="reservation.html">จองเลย</a>
                   </div>
                 </div>
               </div>
@@ -169,7 +181,7 @@ https://templatemo.com/tm-580-woox-travel
           </div>
         </div>
         <div class="col-lg-6 col-sm-6">
-          <div class="item">
+          <div class="item" data-topic="basic" data-level="intermediate">
             <div class="row">
               <div class="col-lg-6">
                 <div class="image">
@@ -178,21 +190,25 @@ https://templatemo.com/tm-580-woox-travel
               </div>
               <div class="col-lg-6 align-self-center">
                 <div class="content">
-                  <span class="info">หัวข้ออบรม</span>
-                  <h4>การเตรียมคอกและวัสดุรองพื้น</h4>
+                  <span class="info">ฟรีสำหรับบุคคลทั่วไป</span>
+                  <h4>เวิร์กช็อปการจัดการโรงเรือน</h4>
                   <div class="row">
                     <div class="col-6">
                       <i class="fa fa-clock"></i>
-                      <span class="list">ลงมือปฏิบัติ</span>
+                      <span class="list">1 วันเต็ม</span>
                     </div>
                     <div class="col-6">
                       <i class="fa fa-map"></i>
-                      <span class="list">อุปกรณ์ตัวอย่าง</span>
+                      <span class="list">ลงพื้นที่จริง</span>
                     </div>
                   </div>
-                  <p>วางแผนขนาดคอก การระบายอากาศ และการใช้แกลบ/ขี้เลื่อย</p>
+                  <p>ฝึกปฏิบัติการวางระบบและดูแลโรงเรือนสำหรับผู้มีพื้นฐานแล้ว.</p>
+                  <div class="filter-labels mt-2">
+                    <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+                    <span class="badge bg-secondary">ระดับ: กลาง</span>
+                  </div>
                   <div class="main-button">
-                    <a href="reservation.html">ลงทะเบียนเข้าร่วม</a>
+                    <a class="btn-compact" href="reservation.html">จองเลย</a>
                   </div>
                 </div>
               </div>
@@ -200,7 +216,7 @@ https://templatemo.com/tm-580-woox-travel
           </div>
         </div>
         <div class="col-lg-6 col-sm-6">
-          <div class="item">
+          <div class="item" data-topic="health" data-level="beginner">
             <div class="row">
               <div class="col-lg-6">
                 <div class="image">
@@ -209,21 +225,25 @@ https://templatemo.com/tm-580-woox-travel
               </div>
               <div class="col-lg-6 align-self-center">
                 <div class="content">
-                  <span class="info">หัวข้ออบรม</span>
-                  <h4>อาหาร การดูแลสุขภาพ และการตลาด</h4>
+                  <span class="info">ฟรีสำหรับบุคคลทั่วไป</span>
+                  <h4>สุขภาพและโภชนาการ</h4>
                   <div class="row">
                     <div class="col-6">
                       <i class="fa fa-clock"></i>
-                      <span class="list">เชิงทฤษฎี + ปฏิบัติ</span>
+                      <span class="list">2 วัน + เวิร์กช็อป</span>
                     </div>
                     <div class="col-6">
                       <i class="fa fa-map"></i>
-                      <span class="list">แบบฟอร์ม/ตัวอย่าง</span>
+                      <span class="list">ออนไลน์/ออนไซต์</span>
                     </div>
                   </div>
-                  <p>สูตรอาหารพื้นฐาน วัคซีน การป้องกันโรค การแปรรูป และการทำบัญชี</p>
+                  <p>เรียนรู้หลักการดูแลสุขภาพสัตว์และโภชนาการที่จำเป็น.</p>
+                  <div class="filter-labels mt-2">
+                    <span class="badge bg-info text-dark">หมวด: สุขภาพสัตว์</span>
+                    <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+                  </div>
                   <div class="main-button">
-                    <a href="reservation.html">ลงทะเบียนเข้าร่วม</a>
+                    <a class="btn-compact" href="reservation.html">จองเลย</a>
                   </div>
                 </div>
               </div>
@@ -231,7 +251,7 @@ https://templatemo.com/tm-580-woox-travel
           </div>
         </div>
         <div class="col-lg-6 col-sm-6">
-          <div class="item">
+          <div class="item" data-topic="housing" data-level="advanced">
             <div class="row">
               <div class="col-lg-6">
                 <div class="image">
@@ -240,21 +260,31 @@ https://templatemo.com/tm-580-woox-travel
               </div>
               <div class="col-lg-6 align-self-center">
                 <div class="content">
-                  <span class="info">*Offer Until 24th March</span>
-                  <h4>Glasgow City Lorem</h4>
+                  <span class="info">ฟรีสำหรับบุคคลทั่วไป</span>
+                  <h4>คอร์ส Bedding Pig ขั้นสูง</h4>
                   <div class="row">
                     <div class="col-6">
                       <i class="fa fa-clock"></i>
-                      <span class="list">5 Days</span>
+                      <span class="list">3 วันเต็ม</span>
                     </div>
                     <div class="col-6">
                       <i class="fa fa-map"></i>
-                      <span class="list">Daily Places</span>
+                      <span class="list">เวิร์กช็อปภาคสนาม</span>
                     </div>
                   </div>
-                  <p>This free CSS template is provided by Template Mo website.</p>
+                  <p>ลงลึกเทคนิคการปูรองพื้นหมูหลุม การจัดการความชื้น กลิ่น และสุขภาพสัตว์ เพื่อยกระดับประสิทธิภาพฟาร์ม.</p>
+                  <div class="filter-labels mt-2">
+                    <span class="badge bg-success">หมวด: การจัดการโรงเรือน</span>
+                    <span class="badge bg-secondary">ระดับ: ขั้นสูง</span>
+                  </div>
                   <div class="main-button">
-                    <a href="reservation.html">Make a Reservation</a>
+                    <a class="btn-compact" href="reservation.html">จองเลย</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
                   </div>
                 </div>
               </div>
@@ -266,13 +296,96 @@ https://templatemo.com/tm-580-woox-travel
     </div>
   </div>
 
-  
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="section-heading text-center">
+          <h2>วิดีโอ</h2>
+          <p>รวมคลิปพื้นฐานหมูหลุมเป็นการ์ดให้เลือกชม พร้อมเล่นได้จากหน้านี้ทันที</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="beginner">
+          <div class="image ratio ratio-16x9">
+            <video class="w-100 h-100" controls preload="metadata">
+              <source src="assets/videos/video-01.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="content mt-3">
+            <span class="info">พื้นฐานหมูหลุม</span>
+            <h4>เลีย้งหมูหลุม: ปฎิวัติไร้กลิ่น</h4>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="intermediate">
+          <div class="image ratio ratio-16x9">
+            <video class="w-100 h-100" controls preload="metadata">
+              <source src="assets/videos/video-02.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="content mt-3">
+            <span class="info">พื้นฐานหมูหลุม</span>
+            <h4>หมูปูพื้นคอก โอกินาวา ประเทศญี่ปุ่น</h4>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: กลาง</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="beginner">
+          <div class="image ratio ratio-16x9">
+            <video class="w-100 h-100" controls preload="metadata">
+              <source src="assets/videos/video-03.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="content mt-3">
+            <span class="info">พื้นฐานหมูหลุม</span>
+            <h4>หมูหลุมในประเทศยูกันดา</h4>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="advanced">
+          <div class="image ratio ratio-16x9">
+            <video class="w-100 h-100" controls preload="metadata">
+              <source src="assets/videos/video-04.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="content mt-3">
+            <span class="info">พื้นฐานหมูหลุม</span>
+            <h4>หมูหลุม: ปฎิวัติไร้กลิ่น</h4>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: ขั้นสูง</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
       <div class="row">
-                <div class="col-lg-12">
-          <p>โครงการพัฒนาเกษตรกรผู้เลี้ยงหมูหลุม — สงวนลิขสิทธิ์ © 2025<br>พัฒนาและดูแลโดย ทีมโครงการหมูหลุม</p>
+        <div class="col-lg-12">
+          <p>© ฟาร์มหมูหลุม 2025<br>พัฒนาเพื่อการเรียนรู้และท่องเที่ยวเชิงเกษตร</p>
         </div>
       </div>
     </div>
@@ -292,12 +405,43 @@ https://templatemo.com/tm-580-woox-travel
   <script src="assets/js/custom.js"></script>
 
   <script>
-    $(".option").click(function(){
-      $(".option").removeClass("active");
-      $(this).addClass("active"); 
-    });
+    (function($){
+      const $topic = $('#chooseLocation');
+      const $level = $('#choosePrice');
+      const $keyword = $('#searchKeyword');
+      const $items = $('.amazing-deals .item, .container.py-5 .item');
+
+      function applyFilters(){
+        const topicVal = $topic.val();
+        const levelVal = $level.val();
+        const keyword = ($keyword.val() || '').toLowerCase().trim();
+        $items.each(function(){
+          const $item = $(this);
+          const matchTopic = !topicVal || $item.data('topic') === topicVal;
+          const matchLevel = !levelVal || $item.data('level') === levelVal;
+          const text = $item.text().toLowerCase();
+          const matchKeyword = !keyword || text.indexOf(keyword) !== -1;
+          const $wrap = $item.closest('.col-lg-6, .col-md-6, .col-sm-6');
+          const $target = $wrap.length ? $wrap : $item;
+          $target.toggle(matchTopic && matchLevel && matchKeyword);
+        });
+      }
+
+      $topic.on('change', applyFilters);
+      $level.on('change', applyFilters);
+      $keyword.on('input', applyFilters);
+      applyFilters();
+
+      $(".option").click(function(){
+        $(".option").removeClass("active");
+        $(this).addClass("active"); 
+      });
+    })(jQuery);
   </script>
 
   </body>
 
 </html>
+
+
+
