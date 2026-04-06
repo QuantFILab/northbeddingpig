@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>เช็กความพร้อมฟาร์ม - ฟาร์มหมูหลุม</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+    <link rel="stylesheet" href="assets/css/theme-lux-green.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <style>
+      :root {
+        --check-forest: #0f5132;
+        --check-forest-deep: #173f2f;
+        --check-gold: #c3922e;
+        --check-ink: #173229;
+        --check-muted: #6d7b74;
+        --check-border: rgba(15, 81, 50, 0.14);
+        --check-shadow: 0 22px 50px rgba(15, 81, 50, 0.12);
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(195, 146, 46, 0.12), transparent 36%),
+          linear-gradient(180deg, #fcfffd 0%, #f7f3e8 100%);
+      }
+
+      .self-check-hero {
+        padding: 180px 0 110px;
+        background:
+          linear-gradient(120deg, rgba(15, 81, 50, 0.92), rgba(23, 63, 47, 0.84)),
+          url('assets/images/heading-bg.jpg') center/cover no-repeat;
+      }
+
+      .self-check-hero h4,
+      .self-check-hero h2,
+      .self-check-hero p {
+        color: #fff;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        margin-bottom: 18px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 28px;
+      }
+
+      .hero-actions a {
+        min-width: 180px;
+        justify-content: center;
+      }
+
+      .self-check-shell {
+        position: relative;
+        margin-top: -60px;
+        padding-bottom: 80px;
+      }
+
+      .intro-card,
+      .score-card,
+      .section-card,
+      .bonus-card {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid var(--check-border);
+        border-radius: 28px;
+        box-shadow: var(--check-shadow);
+      }
+
+      .intro-card {
+        padding: 28px;
+      }
+
+      .intro-card p {
+        color: var(--check-muted);
+        margin-bottom: 0;
+      }
+
+      .mini-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .mini-stat {
+        border-radius: 20px;
+        padding: 18px;
+        background: linear-gradient(180deg, rgba(15, 81, 50, 0.07), rgba(15, 81, 50, 0.01));
+        border: 1px solid rgba(15, 81, 50, 0.1);
+      }
+
+      .mini-stat strong {
+        display: block;
+        color: var(--check-forest);
+        font-size: 28px;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .mini-stat span {
+        color: var(--check-muted);
+        font-size: 14px;
+      }
+
+      .score-card {
+        padding: 26px;
+        position: sticky;
+        top: 110px;
+      }
+
+      .score-card h3 {
+        color: var(--check-forest);
+        font-size: 28px;
+        margin-bottom: 6px;
+      }
+
+      .score-card p {
+        color: var(--check-muted);
+        margin-bottom: 0;
+      }
+
+      .score-ring {
+        width: 132px;
+        height: 132px;
+        margin: 20px auto 16px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at center, #fff 55%, transparent 56%),
+          conic-gradient(var(--ring-color, var(--check-forest)) calc(var(--score, 0) * 1%), rgba(15, 81, 50, 0.12) 0);
+        box-shadow: inset 0 0 0 1px rgba(15, 81, 50, 0.08);
+      }
+
+      .score-ring strong {
+        color: var(--check-forest);
+        font-size: 30px;
+      }
+
+      .score-ring span {
+        display: block;
+        color: var(--check-muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .status-pill.ready {
+        color: #0b5132;
+        background: rgba(16, 185, 129, 0.16);
+      }
+
+      .status-pill.warning {
+        color: #8a5a00;
+        background: rgba(195, 146, 46, 0.18);
+      }
+
+      .status-pill.risk {
+        color: #8a1c1c;
+        background: rgba(220, 38, 38, 0.12);
+      }
+
+      .progress-track {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(15, 81, 50, 0.08);
+        margin: 18px 0 20px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        height: 100%;
+        width: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #c3922e, #0f5132);
+        transition: width 0.25s ease;
+      }
+
+      .score-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .score-grid div {
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(15, 81, 50, 0.08);
+        background: #fbfdfc;
+      }
+
+      .score-grid strong {
+        display: block;
+        color: var(--check-forest);
+        font-size: 22px;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+
+      .score-grid span {
+        color: var(--check-muted);
+        font-size: 13px;
+      }
+
+      .reset-button {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(15, 81, 50, 0.14);
+        background: #fff;
+        color: var(--check-forest);
+        font-weight: 600;
+      }
+
+      .section-card {
+        padding: 24px;
+        margin-top: 24px;
+      }
+
+      .section-heading-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+      }
+
+      .section-heading-row h3,
+      .bonus-card h3 {
+        color: var(--check-forest);
+      }
+
+      .section-heading-row p,
+      .bonus-card p {
+        color: var(--check-muted);
+        margin-bottom: 0;
+      }
+
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        color: var(--check-forest);
+        background: rgba(15, 81, 50, 0.08);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .criteria-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .criteria-card {
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        border-radius: 24px;
+        padding: 22px;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdfc 100%);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      }
+
+      .criteria-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 36px rgba(15, 81, 50, 0.08);
+      }
+
+      .criteria-card[data-state="ready"] {
+        border-color: rgba(16, 185, 129, 0.35);
+        box-shadow: 0 16px 32px rgba(16, 185, 129, 0.1);
+      }
+
+      .criteria-card[data-state="partial"] {
+        border-color: rgba(195, 146, 46, 0.4);
+        box-shadow: 0 16px 32px rgba(195, 146, 46, 0.1);
+      }
+
+      .criteria-card[data-state="missing"] {
+        border-color: rgba(220, 38, 38, 0.28);
+        box-shadow: 0 16px 32px rgba(220, 38, 38, 0.08);
+      }
+
+      .criteria-card[data-state="na"] {
+        border-color: rgba(107, 114, 128, 0.22);
+        box-shadow: none;
+        background: #fafafa;
+      }
+
+      .criteria-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        align-items: flex-start;
+        margin-bottom: 16px;
+      }
+
+      .criteria-code {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(15, 81, 50, 0.08);
+        color: var(--check-forest);
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .criteria-card h4 {
+        margin-bottom: 8px;
+        color: var(--check-ink);
+        font-size: 24px;
+      }
+
+      .criteria-card p,
+      .criteria-card li {
+        color: var(--check-muted);
+      }
+
+      .criteria-card ul {
+        padding-left: 18px;
+        margin: 0 0 16px;
+      }
+
+      .criteria-card ul li + li {
+        margin-top: 8px;
+      }
+
+      .criteria-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: rgba(195, 146, 46, 0.12);
+        color: #8a5a00;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .criteria-card.optional .criteria-meta {
+        background: rgba(107, 114, 128, 0.12);
+        color: #4b5563;
+      }
+
+      .reference-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .reference-thumb {
+        display: block;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #f4f8f6;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        text-decoration: none;
+      }
+
+      .reference-thumb img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .reference-thumb span {
+        display: block;
+        padding: 10px 12px 12px;
+        color: var(--check-ink);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .placeholder-thumb {
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        color: var(--check-muted);
+        text-align: center;
+        padding: 20px;
+      }
+
+      .placeholder-thumb i {
+        font-size: 26px;
+        color: #c3922e;
+      }
+
+      .status-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 10px;
+      }
+
+      .status-btn {
+        border: 1px solid rgba(15, 81, 50, 0.12);
+        background: #fff;
+        color: var(--check-forest);
+        border-radius: 16px;
+        padding: 12px 14px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+
+      .status-btn.active-ready {
+        background: rgba(16, 185, 129, 0.16);
+        border-color: rgba(16, 185, 129, 0.35);
+        color: #0b5132;
+      }
+
+      .status-btn.active-partial {
+        background: rgba(195, 146, 46, 0.18);
+        border-color: rgba(195, 146, 46, 0.35);
+        color: #8a5a00;
+      }
+
+      .status-btn.active-missing {
+        background: rgba(220, 38, 38, 0.12);
+        border-color: rgba(220, 38, 38, 0.3);
+        color: #8a1c1c;
+      }
+
+      .status-btn.active-na {
+        background: rgba(107, 114, 128, 0.12);
+        border-color: rgba(107, 114, 128, 0.25);
+        color: #4b5563;
+      }
+
+      .helper-note {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--check-muted);
+      }
+
+      .suggestion-list {
+        margin: 18px 0 0;
+        padding-left: 20px;
+      }
+
+      .suggestion-list li + li {
+        margin-top: 12px;
+      }
+
+      .bonus-card {
+        padding: 24px;
+        margin-top: 24px;
+      }
+
+      .legend-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .legend-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        color: var(--check-muted);
+        font-size: 13px;
+      }
+
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      footer {
+        margin-top: 0;
+      }
+
+      @media (max-width: 991.98px) {
+        .self-check-hero {
+          padding: 150px 0 90px;
+        }
+
+        .self-check-shell {
+          margin-top: -35px;
+        }
+
+        .score-card {
+          position: static;
+        }
+
+        .mini-stats,
+        .score-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 767.98px) {
+        .intro-card,
+        .score-card,
+        .section-card,
+        .bonus-card {
+          border-radius: 22px;
+        }
+
+        .mini-stats,
+        .score-grid,
+        .status-group {
+          grid-template-columns: 1fr;
+        }
+
+        .criteria-card {
+          padding: 18px;
+        }
+
+        .section-card {
+          padding: 20px;
+        }
+
+        .criteria-head,
+        .section-heading-row {
+          flex-direction: column;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="">
+              </a>
+              <ul class="nav">
+                <li><a href="index.html">หน้าแรก</a></li>
+                <li><a href="about.html">เกี่ยวกับเรา</a></li>
+                <li><a href="deals.html">การเรียนรู้</a></li>
+                <li><a href="research.html">คลังวิจัย</a></li>
+                <li><a href="reservation.html">รายชื่อสมาชิก</a></li>
+                <li><a href="self-check.html" class="active">เช็กฟาร์ม</a></li>
+              </ul>
+              <a class="menu-trigger">
+                <span>Menu</span>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="self-check-hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <span class="hero-badge"><i class="fa fa-clipboard-check"></i> แบบประเมินตนเองก่อนยื่นเกณฑ์ผ่าน</span>
+            <h4>สำหรับเกษตรกรผู้เลี้ยงหมูหลุม</h4>
+            <h2>เช็กภาพหลักฐานและความพร้อมของฟาร์มด้วยตัวเอง</h2>
+            <p>
+              หน้าเดียวจบสำหรับตรวจรายการสำคัญ ข้อที่ต้องมีภาพอ้างอิง และรายการที่ยังขาดจาก PowerPoint
+              ระบบจะคำนวณคะแนนให้ทันทีและสรุปว่าควรทำอะไรต่อก่อนส่งประเมิน
+            </p>
+            <div class="hero-actions">
+              <div class="main-button">
+                <a href="#assessment-start">เริ่มประเมินเลย</a>
+              </div>
+              <div class="border-button">
+                <a href="combined_instruction_match_สองฟาร์ม.pptx" target="_blank" rel="noopener">เปิด PowerPoint อ้างอิง</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="assessment-start" class="self-check-shell">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <section class="intro-card">
+              <h3 style="color:#0f5132;">วิธีใช้หน้านี้</h3>
+              <p>
+                กดสถานะของแต่ละข้อเป็น <strong>พร้อม</strong>, <strong>ต้องปรับ</strong> หรือ <strong>ยังไม่มี</strong>
+                แล้วดูคะแนนรวมและรายการแนะนำทางขวาได้ทันที
+                สำหรับข้อที่มีเงื่อนไขเฉพาะฟาร์ม เช่น บ้านพักพนักงานหรือบ่อแก๊สชีวภาพ สามารถเลือก <strong>ไม่เกี่ยวข้อง</strong> ได้
+              </p>
+              <div class="legend-row">
+                <span class="legend-chip"><span class="legend-dot" style="background:#10b981;"></span> พร้อม = 4 คะแนน</span>
+                <span class="legend-chip"><span class="legend-dot" style="background:#c3922e;"></span> ต้องปรับ = 2 คะแนน</span>
+                <span class="legend-chip"><span class="legend-dot" style="background:#dc2626;"></span> ยังไม่มี = 0 คะแนน</span>
+                <span class="legend-chip"><span class="legend-dot" style="background:#6b7280;"></span> ไม่เกี่ยวข้อง = ไม่นับคะแนน</span>
+              </div>
+              <div class="mini-stats">
+                <div class="mini-stat">
+                  <strong id="total-criteria">0</strong>
+                  <span>รายการที่ใช้คำนวณคะแนน</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="with-image-count">0</strong>
+                  <span>รายการที่มีภาพตัวอย่างจาก PowerPoint</span>
+                </div>
+                <div class="mini-stat">
+                  <strong id="missing-image-count">0</strong>
+                  <span>รายการที่ยังไม่มีภาพอ้างอิงในไฟล์</span>
+                </div>
+              </div>
+            </section>
+
+            <div id="criteria-sections"></div>
+
+            <section class="bonus-card">
+              <div class="section-heading-row">
+                <div>
+                  <h3>รายการเสริมที่ช่วยให้ฟาร์มดูพร้อมมากขึ้น</h3>
+                  <p>รายการนี้ไม่ถูกรวมในคะแนนผ่านหลัก แต่มีประโยชน์ต่อการจัดการสุขภาพสัตว์</p>
+                </div>
+                <span class="section-tag"><i class="fa fa-plus-circle"></i> ไม่คิดคะแนน</span>
+              </div>
+              <div class="criteria-card">
+                <span class="criteria-code">ภาพสนับสนุนเพิ่มเติม</span>
+                <h4>คอกพักสัตว์ป่วย</h4>
+                <p>
+                  แม้ไม่อยู่ในรายการบังคับข้อ 7-33 โดยตรง แต่การมีพื้นที่แยกสัตว์ป่วยจะช่วยให้จัดการโรคและสุขภาพสัตว์ได้ดีขึ้น
+                </p>
+                <div class="reference-strip">
+                  <a class="reference-thumb" href="rendered_instruction_match/slide-22.png" target="_blank" rel="noopener">
+                    <img src="rendered_instruction_match/slide-22.png" alt="ตัวอย่างคอกพักสัตว์ป่วย">
+                    <span>ตัวอย่างภาพคอกพักสัตว์ป่วยจากชุดอ้างอิง</span>
+                  </a>
+                </div>
+                <p class="helper-note">ถ้าฟาร์มของคุณมีพื้นที่นี้อยู่แล้ว ควรถ่ายภาพเก็บไว้เป็นหลักฐานสนับสนุนเพิ่มเติม</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-lg-4">
+            <aside class="score-card">
+              <p>คะแนนประเมินเบื้องต้น</p>
+              <h3 id="score-title">ยังไม่เริ่มประเมิน</h3>
+              <div class="score-ring" id="score-ring">
+                <div>
+                  <strong id="score-value">0%</strong>
+                  <span id="score-caption">เริ่มกดสถานะในแต่ละข้อ</span>
+                </div>
+              </div>
+              <div id="score-status" class="status-pill warning">
+                <i class="fa fa-hourglass-half"></i>
+                <span>รอข้อมูลประเมิน</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+              <div class="score-grid">
+                <div>
+                  <strong id="ready-count">0</strong>
+                  <span>พร้อม</span>
+                </div>
+                <div>
+                  <strong id="partial-count">0</strong>
+                  <span>ต้องปรับ</span>
+                </div>
+                <div>
+                  <strong id="missing-count">0</strong>
+                  <span>ยังไม่มี</span>
+                </div>
+                <div>
+                  <strong id="pending-count">0</strong>
+                  <span>ยังไม่ประเมิน</span>
+                </div>
+              </div>
+              <button id="reset-assessment" class="reset-button" type="button">ล้างผลการประเมิน</button>
+
+              <div style="margin-top:24px;">
+                <h5 style="color:#0f5132;">รายการที่ควรทำต่อ</h5>
+                <p style="font-size:14px;">ระบบจะสรุปเฉพาะรายการที่ยังไม่พร้อมให้โดยอัตโนมัติ</p>
+                <ol id="suggestion-list" class="suggestion-list"></ol>
+              </div>
+
+              <p class="helper-note" style="margin-top:20px;">
+                หมายเหตุ: คะแนนนี้เป็นการเช็กความพร้อมจากรายการภาพและหลักฐานใน PowerPoint เท่านั้น
+                การผ่านจริงยังขึ้นกับการตรวจของหน่วยงานที่เกี่ยวข้อง
+              </p>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <p>โครงการพัฒนาเกษตรกรผู้เลี้ยงหมูหลุม © 2025<br>หน้าประเมินตนเองสำหรับเกษตรกรผู้เลี้ยงหมูหลุม</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/popup.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script>
+      const sections = [
+        {
+          id: 'documents',
+          title: 'เอกสารและหลักฐานระบุตัวตน',
+          description: 'รายการที่ช่วยยืนยันตัวฟาร์ม ผู้ประกอบการ และเอกสารภาพประกอบก่อนยื่นประเมิน'
+        },
+        {
+          id: 'biosecurity',
+          title: 'การควบคุมการเข้าออกและชีวอนามัย',
+          description: 'จุดสำคัญที่ช่วยลดความเสี่ยงโรคและแสดงว่าฟาร์มควบคุมการเข้าออกได้จริง'
+        },
+        {
+          id: 'buildings',
+          title: 'โรงเรือน พื้นที่ใช้งาน และอุปกรณ์',
+          description: 'รายการด้านอาคาร โรงอาหาร จุดเก็บของ และหลักฐานมุมต่าง ๆ ของโรงเรือน'
+        },
+        {
+          id: 'environment',
+          title: 'น้ำเสีย ของเสีย และสิ่งแวดล้อม',
+          description: 'เกณฑ์ที่สะท้อนการจัดการของเสีย ความสะอาด และผลกระทบต่อสิ่งแวดล้อม'
+        }
+      ];
+
+      const criteria = [
+        {
+          id: 'c07',
+          section: 'documents',
+          code: 'ข้อ 7',
+          title: 'แผนที่ตั้งฟาร์มเลี้ยงสัตว์',
+          requirement: 'ต้องมีแผนที่แสดงถนนหลักเข้าสู่หน้าฟาร์มอย่างชัดเจน',
+          hints: [
+            'ระบุเส้นทางจากถนนหลักหรือจุดสังเกตสำคัญให้ถึงหน้าฟาร์ม',
+            'ใช้ภาพจากแผนที่ออนไลน์หรือวาดแผนที่ประกอบก็ได้'
+          ],
+          action: 'จัดทำแผนที่ที่เห็นถนนหลัก จุดเลี้ยว และตำแหน่งหน้าฟาร์มให้พร้อมแนบหลักฐาน',
+          references: []
+        },
+        {
+          id: 'c08',
+          section: 'documents',
+          code: 'ข้อ 8',
+          title: 'แผนผังโรงเรือนและสิ่งก่อสร้างภายในฟาร์ม',
+          requirement: 'ต้องมีผังแสดงตำแหน่งโรงเรือน ประตู จุดฆ่าเชื้อ และอาคารสำคัญภายในฟาร์ม',
+          hints: [
+            'ใส่ตำแหน่งโรงเรือนแต่ละหลัง ทางเดิน และพื้นที่ใช้งานสำคัญ',
+            'ใช้เป็นภาพรวมให้ผู้ตรวจเข้าใจการจัดวางฟาร์ม'
+          ],
+          action: 'เขียนแผนผังฟาร์มให้ครบทุกอาคารและจุดสำคัญ แล้วถ่ายหรือสแกนเก็บเป็นไฟล์',
+          references: []
+        },
+        {
+          id: 'c10',
+          section: 'documents',
+          code: 'ข้อ 10',
+          title: 'ป้ายชื่อฟาร์ม',
+          requirement: 'ป้ายชื่อฟาร์มต้องใช้ชื่อเดียวกับใบ อภ.02',
+          hints: [
+            'ถ่ายให้เห็นชื่อชัดเจนและอ่านได้จริง',
+            'หากป้ายเก่าหรือชื่อไม่ตรง ควรแก้ก่อนถ่ายภาพ'
+          ],
+          action: 'ตรวจชื่อบนป้ายให้ตรงกับเอกสาร และถ่ายภาพให้เห็นป้ายเต็มป้าย',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-01.png',
+              caption: 'ตัวอย่างภาพป้ายชื่อฟาร์ม'
+            }
+          ]
+        },
+        {
+          id: 'c11',
+          section: 'documents',
+          code: 'ข้อ 11',
+          title: 'รูปภาพผู้ประกอบการ',
+          requirement: 'ใช้เป็นรูปภาพผู้ประกอบการ ควรถ่ายคู่กับป้ายชื่อฟาร์มหรือจุดที่ระบุฟาร์มได้',
+          hints: [
+            'ควรเป็นภาพล่าสุดและเห็นใบหน้าชัดเจน',
+            'ให้ภาพยืนยันความเชื่อมโยงกับฟาร์มอย่างชัดเจน'
+          ],
+          action: 'ถ่ายรูปผู้ประกอบการคู่กับป้ายฟาร์มหรือจุดที่ยืนยันว่าเป็นฟาร์มของตน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-02.png',
+              caption: 'ตัวอย่างรูปภาพผู้ประกอบการ'
+            }
+          ]
+        },
+        {
+          id: 'c12',
+          section: 'documents',
+          code: 'ข้อ 12',
+          title: 'ภาพมุมกว้างสภาพฟาร์ม',
+          requirement: 'ต้องมีภาพมุมกว้างระยะไกลที่เห็นสภาพฟาร์มโดยรวม',
+          hints: [
+            'ควรเห็นพื้นที่หลักของฟาร์มจากมุมเดียวหรือชุดภาพเดียว',
+            'ใช้ยืนยันความเรียบร้อยและภาพรวมพื้นที่'
+          ],
+          action: 'ถ่ายภาพมุมกว้างจากจุดที่เห็นพื้นที่หลักของฟาร์มให้ชัดที่สุด',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-06.png',
+              caption: 'ตัวอย่างภาพมุมกว้างของฟาร์ม'
+            }
+          ]
+        },
+        {
+          id: 'c14',
+          section: 'documents',
+          code: 'ข้อ 14',
+          title: 'สำนักงานหรือบ้านพักพนักงานภายในฟาร์ม',
+          requirement: 'ถ้ามีพื้นที่นี้ในฟาร์ม ควรถ่ายภาพให้เห็นอาคารและบริเวณใช้งาน',
+          hints: [
+            'ใช้เมื่อฟาร์มมีสำนักงานหรือบ้านพักภายในพื้นที่จริง',
+            'ถ้าไม่มีรายการนี้ ให้เลือกไม่เกี่ยวข้อง'
+          ],
+          action: 'ถ่ายภาพสำนักงานหรือบ้านพักพนักงานให้เห็นสภาพจริงและความสะอาดของพื้นที่',
+          references: [],
+          optional: true
+        },
+        {
+          id: 'c09',
+          section: 'biosecurity',
+          code: 'ข้อ 9',
+          title: 'ประตูรั้วเข้าออกและรั้วรอบฟาร์ม',
+          requirement: 'ประตูรั้วต้องเต็มบาน ควบคุมการเข้าออกได้ และมีป้ายห้ามเข้าก่อนได้รับอนุญาต พร้อมรั้วรอบฟาร์มสูงตามเกณฑ์',
+          hints: [
+            'รั้วรอบฟาร์มควรสูงไม่น้อยกว่า 150 ซม. และทึบจากดินไม่น้อยกว่า 80 ซม.',
+            'ถ่ายทั้งภาพประตูเข้าออกและภาพรั้วรอบบริเวณ'
+          ],
+          action: 'เสริมรั้วหรือประตูให้ควบคุมการเข้าออกได้จริง และติดป้ายห้ามเข้าให้ชัดเจน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-03.png',
+              caption: 'ประตูรั้วเข้าออกพร้อมป้ายห้ามเข้า'
+            },
+            {
+              src: 'rendered_instruction_match/slide-27.png',
+              caption: 'รั้วรอบบริเวณฟาร์มตามเกณฑ์'
+            }
+          ]
+        },
+        {
+          id: 'c15',
+          section: 'biosecurity',
+          code: 'ข้อ 15',
+          title: 'จุดฆ่าเชื้อก่อนเข้าออกฟาร์ม',
+          requirement: 'ต้องมีจุดฆ่าเชื้อก่อนเข้าออกฟาร์ม มีป้ายกำกับ และควรมีภาพการพ่นน้ำยาฆ่าเชื้อโรคพาหนะจริง',
+          hints: [
+            'ผู้ตรวจควรเห็นทั้งจุดติดตั้งและการใช้งานจริง',
+            'ภาพพ่นน้ำยาในขณะรถเข้าออกช่วยยืนยันการใช้งานต่อเนื่อง'
+          ],
+          action: 'จัดจุดฆ่าเชื้อพร้อมป้าย และถ่ายภาพขณะใช้งานจริงกับรถหรือพาหนะ',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-04.png',
+              caption: 'จุดฆ่าเชื้อก่อนเข้าออกฟาร์ม'
+            },
+            {
+              src: 'rendered_instruction_match/slide-05.png',
+              caption: 'ภาพขณะพ่นน้ำยาฆ่าเชื้อพาหนะ'
+            }
+          ]
+        },
+        {
+          id: 'c17',
+          section: 'biosecurity',
+          code: 'ข้อ 17',
+          title: 'จุดฆ่าเชื้ออุปกรณ์ก่อนเข้าฟาร์ม',
+          requirement: 'ต้องมีอุปกรณ์หรือพื้นที่ฆ่าเชื้ออุปกรณ์ก่อนเข้าฟาร์ม เช่น ถังพ่นยา ตู้อบ UV หรือสเปรย์แอลกอฮอล์พร้อมป้าย',
+          hints: [
+            'ถ่ายให้เห็นอุปกรณ์และป้ายกำกับในภาพเดียวกัน',
+            'จุดนี้ควรพร้อมใช้งานจริง'
+          ],
+          action: 'ตั้งจุดฆ่าเชื้ออุปกรณ์ให้ชัดเจนและติดป้ายกำกับก่อนถ่ายหลักฐาน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-26.png',
+              caption: 'ตัวอย่างจุดฆ่าเชื้ออุปกรณ์'
+            }
+          ]
+        },
+        {
+          id: 'c18',
+          section: 'biosecurity',
+          code: 'ข้อ 18',
+          title: 'อ่างล้างมือพร้อมสบู่หรือเจลล้างมือ',
+          requirement: 'ต้องมีอ่างล้างมือพร้อมสบู่หรือเจลล้างมือและป้าย พร้อมใช้งานจริง',
+          hints: [
+            'อย่าให้เป็นเพียงจุดวางของที่ไม่ได้ใช้งาน',
+            'ควรถ่ายให้เห็นอ่างล้างมือ อุปกรณ์ล้างมือ และป้ายในภาพ'
+          ],
+          action: 'จัดอ่างล้างมือพร้อมสบู่หรือเจลให้ครบและถ่ายภาพตอนพร้อมใช้งาน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-25.png',
+              caption: 'อ่างล้างมือพร้อมป้าย'
+            }
+          ]
+        },
+        {
+          id: 'c19',
+          section: 'biosecurity',
+          code: 'ข้อ 19',
+          title: 'อ่างจุ่มเท้าก่อนเข้าออกโรงเรือน',
+          requirement: 'ต้องมีอ่างจุ่มเท้าพร้อมฝาปิดและป้าย อย่างน้อย 1 ชุดต่อ 1 โรงเรือน',
+          hints: [
+            'ถ้ามีหลายโรงเรือน ควรถ่ายให้เห็นครบทุกโรงเรือน',
+            'ภาพอ้างอิงแสดงตัวอย่างแยกโรงเรือน'
+          ],
+          action: 'ติดตั้งอ่างจุ่มเท้าให้ครบทุกโรงเรือนและเติมองค์ประกอบให้พร้อมใช้งาน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-14.png',
+              caption: 'อ่างจุ่มเท้าพร้อมป้ายสำหรับแต่ละโรงเรือน'
+            }
+          ]
+        },
+        {
+          id: 'c20',
+          section: 'biosecurity',
+          code: 'ข้อ 20',
+          title: 'บันทึกยานพาหนะเข้าออกฟาร์ม',
+          requirement: 'ต้องมีบันทึกยานพาหนะเข้าออกฟาร์มและกรอกข้อมูลย้อนหลังครบถ้วน',
+          hints: [
+            'ให้เห็นวันที่ รายการรถ และข้อมูลที่กรอกจริง',
+            'ควรเก็บบันทึกอย่างต่อเนื่อง ไม่ใช่เพิ่งเริ่มทำก่อนตรวจ'
+          ],
+          action: 'จัดทำหรืออัปเดตสมุดบันทึกยานพาหนะให้มีข้อมูลย้อนหลังและถ่ายหลักฐานหน้าเอกสาร',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-24.png',
+              caption: 'ตัวอย่างบันทึกยานพาหนะเข้าออกฟาร์ม'
+            }
+          ]
+        },
+        {
+          id: 'c13_16',
+          section: 'buildings',
+          code: 'ข้อ 13/16',
+          title: 'ห้องเปลี่ยนเสื้อผ้าหรือห้องสเปรย์บุคคล',
+          requirement: 'ต้องมีห้องเปลี่ยนเสื้อผ้าหรือห้องสเปรย์บุคคล พร้อมป้ายและภาพภายในพื้นที่ใช้งาน',
+          hints: [
+            'ถ่ายให้เห็นภาพภายใน ไม่ใช่เฉพาะป้ายด้านนอก',
+            'พื้นที่ควรดูเป็นสัดส่วนและพร้อมใช้งานจริง'
+          ],
+          action: 'จัดพื้นที่เปลี่ยนชุดหรือสเปรย์บุคคลให้ชัดเจน พร้อมถ่ายภาพด้านในและด้านนอก',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-07.png',
+              caption: 'ตัวอย่างห้องเปลี่ยนเสื้อผ้าหรือห้องสเปรย์บุคคล'
+            }
+          ]
+        },
+        {
+          id: 'c23',
+          section: 'buildings',
+          code: 'ข้อ 23',
+          title: 'โรงอาหารหรือจุดเก็บอาหารสัตว์',
+          requirement: 'ต้องเห็นประตูเต็มบานถึงพื้นหรือไซโลอาหาร พื้นที่วางอาหารบนพาเลท และเพดานที่มีตาข่ายป้องกันสัตว์พาหะ',
+          hints: [
+            'ถ้ามีหลายจุด ให้ถ่ายภาพครบทั้งภายนอกและภายใน',
+            'หากบางองค์ประกอบยังไม่ครบ ให้เลือกต้องปรับ'
+          ],
+          action: 'จัดจุดเก็บอาหารให้แยกจากพื้น ปิดมิดชิด และเสริมจุดป้องกันสัตว์พาหะก่อนถ่ายภาพ',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-08.png',
+              caption: 'ประตูโรงอาหารหรือไซโลอาหาร'
+            },
+            {
+              src: 'rendered_instruction_match/slide-09.png',
+              caption: 'พื้นโรงอาหารและพาเลทวางอาหาร'
+            },
+            {
+              src: 'rendered_instruction_match/slide-10.png',
+              caption: 'เพดานโรงอาหารและตาข่ายกันสัตว์พาหะ'
+            }
+          ]
+        },
+        {
+          id: 'c24',
+          section: 'buildings',
+          code: 'ข้อ 24',
+          title: 'โรงเก็บอุปกรณ์',
+          requirement: 'ต้องมีโรงเก็บอุปกรณ์หรือพื้นที่เก็บอุปกรณ์ที่มีภาพภายในและป้ายระบุพื้นที่ชัดเจน',
+          hints: [
+            'ควรถ่ายให้เห็นการจัดเก็บอุปกรณ์อย่างเป็นระเบียบ',
+            'ภาพภายในช่วยยืนยันว่าพื้นที่ใช้จริง'
+          ],
+          action: 'จัดโรงเก็บอุปกรณ์ให้เป็นระเบียบ ติดป้าย และถ่ายทั้งภาพภายนอกกับภายใน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-11.png',
+              caption: 'ตัวอย่างโรงเก็บอุปกรณ์และภาพภายใน'
+            }
+          ]
+        },
+        {
+          id: 'c25',
+          section: 'buildings',
+          code: 'ข้อ 25',
+          title: 'ตู้ยาและที่เก็บเวชภัณฑ์',
+          requirement: 'ต้องมีตู้ยา กล่องวัคซีน หรือที่เก็บเวชภัณฑ์พร้อมป้าย และมีภาพภายในจุดเก็บ',
+          hints: [
+            'ถ่ายให้เห็นภายในตู้หรือชั้นจัดเก็บด้วย',
+            'จัดแยกชัดเจนและสะอาด'
+          ],
+          action: 'กำหนดจุดเก็บเวชภัณฑ์ให้เฉพาะเจาะจง ติดป้าย และถ่ายภาพภายในตู้หรือชั้น',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-13.png',
+              caption: 'ตัวอย่างตู้ยาและเวชภัณฑ์'
+            }
+          ]
+        },
+        {
+          id: 'c26',
+          section: 'buildings',
+          code: 'ข้อ 26',
+          title: 'ภาพโรงเรือน 5 มุม',
+          requirement: 'ต้องมีภาพด้านหน้า ด้านใน ด้านซ้าย ด้านขวา และด้านหลังของโรงเรือนแต่ละหลัง',
+          hints: [
+            'ถ้ามีหลายโรงเรือน ต้องแยกภาพให้ครบทุกโรงเรือน',
+            'ใช้ชุดภาพนี้เพื่อยืนยันสภาพการเลี้ยงและความเรียบร้อยรอบอาคาร'
+          ],
+          action: 'ถ่ายภาพโรงเรือนให้ครบ 5 มุมของทุกหลังและตั้งชื่อไฟล์ให้แยกกันชัดเจน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-16.png',
+              caption: 'ภาพด้านหน้าโรงเรือน'
+            },
+            {
+              src: 'rendered_instruction_match/slide-17.png',
+              caption: 'ภาพภายในโรงเรือน'
+            },
+            {
+              src: 'rendered_instruction_match/slide-18.png',
+              caption: 'ภาพด้านซ้ายโรงเรือน'
+            },
+            {
+              src: 'rendered_instruction_match/slide-19.png',
+              caption: 'ภาพด้านขวาโรงเรือน'
+            },
+            {
+              src: 'rendered_instruction_match/slide-20.png',
+              caption: 'ภาพด้านหลังโรงเรือน'
+            }
+          ]
+        },
+        {
+          id: 'c28',
+          section: 'buildings',
+          code: 'ข้อ 28',
+          title: 'ที่เก็บน้ำเลี้ยงสัตว์',
+          requirement: 'ที่เก็บน้ำเลี้ยงสัตว์ต้องมีฝาปิดและป้องกันสัตว์พาหะได้',
+          hints: [
+            'ถ่ายให้เห็นฝาปิดหรือระบบปิดอย่างชัดเจน',
+            'พื้นที่ควรสะอาดและไม่เปิดโล่ง'
+          ],
+          action: 'ติดตั้งฝาปิดหรือแก้จุดเปิดโล่งของที่เก็บน้ำ และถ่ายภาพยืนยัน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-12.png',
+              caption: 'ตัวอย่างที่เก็บน้ำเลี้ยงสัตว์พร้อมฝาปิด'
+            }
+          ]
+        },
+        {
+          id: 'c29',
+          section: 'buildings',
+          code: 'ข้อ 29',
+          title: 'สัญญาณเตือนไฟดับหรือเครื่องสำรองไฟ',
+          requirement: 'ต้องมีระบบแจ้งเตือนไฟดับหรือเครื่องสำรองไฟเพื่อรองรับเหตุฉุกเฉิน',
+          hints: [
+            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
+            'ให้ถ่ายภาพอุปกรณ์จริง จุดติดตั้ง หรือแผงควบคุมที่ใช้งานอยู่'
+          ],
+          action: 'เตรียมอุปกรณ์สำรองไฟหรือระบบแจ้งเตือน พร้อมถ่ายจุดติดตั้งให้เห็นชัดเจน',
+          references: []
+        },
+        {
+          id: 'c21',
+          section: 'environment',
+          code: 'ข้อ 21',
+          title: 'ถังขยะทั่วไปมีฝาปิดและป้าย',
+          requirement: 'ถังขยะทั่วไปต้องมีฝาปิดและป้ายระบุชัดเจน',
+          hints: [
+            'ควรตั้งในจุดที่เข้าถึงง่ายและไม่ปะปนกับขยะติดเชื้อ',
+            'ภาพอ้างอิงอยู่ในชุดเดียวกับข้อ 22'
+          ],
+          action: 'เตรียมถังขยะทั่วไปให้มีฝาปิดครบและติดป้ายแยกประเภทให้ชัดเจน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-15.png',
+              caption: 'ตัวอย่างถังขยะทั่วไปและถังขยะติดเชื้อพร้อมป้าย'
+            }
+          ]
+        },
+        {
+          id: 'c22',
+          section: 'environment',
+          code: 'ข้อ 22',
+          title: 'ถังขยะติดเชื้อมีฝาปิดและเพียงพอ',
+          requirement: 'ถังขยะติดเชื้อต้องมีฝาปิดพร้อมป้าย และมีอย่างน้อย 1 ชุดต่อ 1 โรงเรือน',
+          hints: [
+            'ถ้ามีหลายโรงเรือน ต้องเช็กว่าจัดวางครบทุกหลัง',
+            'ควรถ่ายภาพให้เห็นตำแหน่งจริงหน้าโรงเรือน'
+          ],
+          action: 'เพิ่มถังขยะติดเชื้อให้ครบตามจำนวนโรงเรือนและติดป้ายแยกชัดเจน',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-15.png',
+              caption: 'ตัวอย่างถังขยะติดเชื้อพร้อมป้าย'
+            }
+          ]
+        },
+        {
+          id: 'c27',
+          section: 'environment',
+          code: 'ข้อ 27',
+          title: 'รางระบายน้ำทิ้งหรือน้ำเสีย',
+          requirement: 'ต้องมีรางระบายน้ำทิ้งหรือน้ำเสียที่จัดการทิศทางน้ำได้ชัดเจน',
+          hints: [
+            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
+            'ควรถ่ายให้เห็นแนวราง การไหล และความสะอาดของจุดใช้งาน'
+          ],
+          action: 'ตรวจรางระบายน้ำให้ใช้งานได้จริง ไม่มีอุดตัน และถ่ายภาพตามแนวทางน้ำ',
+          references: []
+        },
+        {
+          id: 'c30',
+          section: 'environment',
+          code: 'ข้อ 30',
+          title: 'บ่อแก๊สชีวภาพพร้อมป้าย',
+          requirement: 'หากฟาร์มมีบ่อแก๊สชีวภาพ ควรมีภาพบ่อและป้ายประกอบชัดเจน',
+          hints: [
+            'หากฟาร์มไม่มีระบบนี้ ให้เลือกไม่เกี่ยวข้อง',
+            'หากมี ควรถ่ายให้เห็นสภาพใช้งานและป้ายพื้นที่'
+          ],
+          action: 'ถ่ายภาพบ่อแก๊สชีวภาพพร้อมป้าย หรือเลือกไม่เกี่ยวข้องหากฟาร์มไม่มีระบบนี้',
+          references: [],
+          optional: true
+        },
+        {
+          id: 'c31',
+          section: 'environment',
+          code: 'ข้อ 31',
+          title: 'ระบบบำบัดน้ำเสียภายในฟาร์ม',
+          requirement: 'ต้องมีระบบบำบัดน้ำเสียหรือพื้นที่จัดการน้ำเสียภายในฟาร์มที่เห็นการใช้งานชัดเจน',
+          hints: [
+            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
+            'ควรถ่ายให้เห็นโครงสร้างหรือบ่อพักที่ใช้จริง'
+          ],
+          action: 'เตรียมหลักฐานระบบบำบัดน้ำเสียให้ครบทั้งภาพรวมและจุดใช้งานจริง',
+          references: []
+        },
+        {
+          id: 'c32',
+          section: 'environment',
+          code: 'ข้อ 32',
+          title: 'บ่อทิ้งซากหรือเตาเผาซาก',
+          requirement: 'ต้องมีภาพมุมกว้างและภาพฝาบ่อหรือเตาเผาซาก และถ้าอยู่นอกรั้วฟาร์มต้องมีรั้วล้อมรอบ',
+          hints: [
+            'ถ่ายให้เห็นทั้งตำแหน่งโดยรวมและจุดปิดบ่อหรือเตาเผา',
+            'เช็กความปลอดภัยของพื้นที่รอบข้างด้วย'
+          ],
+          action: 'ถ่ายภาพบ่อทิ้งซากหรือเตาเผาซากให้ครบทั้งมุมกว้างและจุดปิด พร้อมรั้วถ้าพื้นที่อยู่นอกฟาร์ม',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-21.png',
+              caption: 'ตัวอย่างบ่อทิ้งซากหรือเตาเผาซาก'
+            }
+          ]
+        },
+        {
+          id: 'c33',
+          section: 'environment',
+          code: 'ข้อ 33',
+          title: 'ลานตากมูลพร้อมป้าย',
+          requirement: 'ต้องมีลานตากมูลพร้อมป้าย และภาพควรเห็นพื้นที่ใช้งานอย่างชัดเจน',
+          hints: [
+            'ถ่ายภาพให้เห็นขนาดพื้นที่และการใช้งานจริง',
+            'ตรวจความสะอาดและการจัดการรอบพื้นที่ก่อนถ่าย'
+          ],
+          action: 'จัดพื้นที่ลานตากมูลให้เรียบร้อย ติดป้าย และถ่ายภาพในมุมที่เห็นพื้นที่ครบ',
+          references: [
+            {
+              src: 'rendered_instruction_match/slide-23.png',
+              caption: 'ตัวอย่างลานตากมูลพร้อมป้าย'
+            }
+          ]
+        }
+      ];
+
+      const statusMeta = {
+        ready: { label: 'พร้อม', score: 4, buttonClass: 'active-ready' },
+        partial: { label: 'ต้องปรับ', score: 2, buttonClass: 'active-partial' },
+        missing: { label: 'ยังไม่มี', score: 0, buttonClass: 'active-missing' },
+        na: { label: 'ไม่เกี่ยวข้อง', score: null, buttonClass: 'active-na' }
+      };
+
+      const labels = {
+        ready: 'พร้อม',
+        partial: 'ต้องปรับ',
+        missing: 'ยังไม่มี',
+        na: 'ไม่เกี่ยวข้อง'
+      };
+
+      const state = Object.create(null);
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function renderReference(item) {
+        if (!item.references.length) {
+          return `
+            <div class="reference-strip">
+              <div class="reference-thumb placeholder-thumb">
+                <i class="fa fa-image"></i>
+                <strong>ยังไม่มีภาพตัวอย่าง</strong>
+                <span>ใช้รายการนี้เป็นแนวทางถ่ายภาพหรือจัดเตรียมหลักฐานเพิ่มเติม</span>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="reference-strip">
+            ${item.references.map((reference) => `
+              <a class="reference-thumb" href="${escapeHtml(reference.src)}" target="_blank" rel="noopener">
+                <img src="${escapeHtml(reference.src)}" alt="${escapeHtml(reference.caption)}" loading="lazy">
+                <span>${escapeHtml(reference.caption)}</span>
+              </a>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      function renderStatusButtons(item) {
+        const options = ['ready', 'partial', 'missing'];
+        if (item.optional) {
+          options.push('na');
+        }
+
+        return `
+          <div class="status-group">
+            ${options.map((status) => `
+              <button type="button" class="status-btn" data-item-id="${item.id}" data-status="${status}" aria-pressed="false">
+                ${labels[status]}
+              </button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      function renderCriteriaCard(item) {
+        return `
+          <article class="criteria-card ${item.optional ? 'optional' : ''}" data-item-id="${item.id}" data-state="">
+            <div class="criteria-head">
+              <div>
+                <span class="criteria-code">${escapeHtml(item.code)}</span>
+                <h4>${escapeHtml(item.title)}</h4>
+                <p>${escapeHtml(item.requirement)}</p>
+              </div>
+              <span class="criteria-meta">
+                <i class="fa ${item.references.length ? 'fa-camera' : 'fa-file-alt'}"></i>
+                ${item.references.length ? `${item.references.length} ภาพอ้างอิง` : 'ยังไม่มีภาพอ้างอิง'}
+              </span>
+            </div>
+            ${renderReference(item)}
+            <ul>
+              ${item.hints.map((hint) => `<li>${escapeHtml(hint)}</li>`).join('')}
+            </ul>
+            ${renderStatusButtons(item)}
+            <p class="helper-note"><strong>สิ่งที่ควรทำ:</strong> ${escapeHtml(item.action)}</p>
+          </article>
+        `;
+      }
+
+      function renderSections() {
+        const container = document.getElementById('criteria-sections');
+        container.innerHTML = sections.map((section) => {
+          const items = criteria.filter((item) => item.section === section.id);
+          return `
+            <section class="section-card">
+              <div class="section-heading-row">
+                <div>
+                  <h3>${escapeHtml(section.title)}</h3>
+                  <p>${escapeHtml(section.description)}</p>
+                </div>
+                <span class="section-tag"><i class="fa fa-list-ul"></i> ${items.length} รายการ</span>
+              </div>
+              <div class="criteria-grid">
+                ${items.map(renderCriteriaCard).join('')}
+              </div>
+            </section>
+          `;
+        }).join('');
+      }
+
+      function computeSummary() {
+        const applicableItems = criteria.filter((item) => state[item.id] !== 'na');
+        const ready = criteria.filter((item) => state[item.id] === 'ready').length;
+        const partial = criteria.filter((item) => state[item.id] === 'partial').length;
+        const missing = criteria.filter((item) => state[item.id] === 'missing').length;
+        const notApplicable = criteria.filter((item) => state[item.id] === 'na').length;
+        const pending = criteria.filter((item) => !state[item.id]).length;
+        const answeredApplicable = applicableItems.filter((item) => Boolean(state[item.id])).length;
+        const maxScore = applicableItems.length * 4;
+        const currentScore = applicableItems.reduce((sum, item) => {
+          const current = state[item.id];
+          if (!current || current === 'na') {
+            return sum;
+          }
+          return sum + statusMeta[current].score;
+        }, 0);
+        const percent = maxScore > 0 ? Math.round((currentScore / maxScore) * 100) : 0;
+
+        let headline = 'ยังไม่เริ่มประเมิน';
+        let caption = 'เริ่มกดสถานะในแต่ละข้อ';
+        let pillClass = 'warning';
+        let pillText = 'รอข้อมูลประเมิน';
+        let ringColor = '#c3922e';
+
+        if (answeredApplicable === 0 && notApplicable === 0) {
+          headline = 'ยังไม่เริ่มประเมิน';
+        } else if (pending > 0) {
+          headline = 'ประเมินยังไม่ครบ';
+          caption = `เหลืออีก ${pending} รายการที่ยังไม่เลือกสถานะ`;
+          pillText = 'กรอกสถานะให้ครบก่อนสรุปผล';
+        } else if (percent >= 85 && missing === 0) {
+          headline = 'พร้อมยื่นประเมินเบื้องต้น';
+          caption = 'คะแนนรวมอยู่ในเกณฑ์ดีและไม่มีข้อที่ยังไม่มี';
+          pillClass = 'ready';
+          pillText = 'พร้อมตรวจเอกสารและภาพหลักฐานรอบสุดท้าย';
+          ringColor = '#10b981';
+        } else if (percent >= 70) {
+          headline = 'ใกล้พร้อม แต่ยังต้องเก็บรายละเอียด';
+          caption = 'มีหลายข้อผ่านแล้ว แต่ยังมีรายการที่ต้องปรับหรือเติมหลักฐาน';
+          pillText = 'เน้นปิดรายการสีเหลืองและสีแดงก่อนยื่น';
+        } else {
+          headline = 'ยังต้องปรับปรุงก่อนยื่น';
+          caption = 'คะแนนรวมยังต่ำหรือมีรายการสำคัญที่ยังไม่มี';
+          pillClass = 'risk';
+          pillText = 'ควรแก้รายการที่ยังไม่มีให้ครบก่อน';
+          ringColor = '#dc2626';
+        }
+
+        return {
+          ready,
+          partial,
+          missing,
+          pending,
+          notApplicable,
+          answeredApplicable,
+          percent,
+          headline,
+          caption,
+          pillClass,
+          pillText,
+          ringColor
+        };
+      }
+
+      function buildSuggestions(summary) {
+        const missingItems = criteria.filter((item) => state[item.id] === 'missing');
+        const partialItems = criteria.filter((item) => state[item.id] === 'partial');
+        const pendingItems = criteria.filter((item) => !state[item.id]);
+        const suggestions = [];
+
+        missingItems.forEach((item) => {
+          suggestions.push({ priority: 1, text: `${item.code} ${item.title}: ${item.action}` });
+        });
+
+        partialItems.forEach((item) => {
+          suggestions.push({
+            priority: 2,
+            text: `${item.code} ${item.title}: ตรวจรายละเอียดให้ครบ โดยเฉพาะ ${item.hints[0].toLowerCase()}`
+          });
+        });
+
+        pendingItems.forEach((item) => {
+          suggestions.push({
+            priority: 3,
+            text: `${item.code} ${item.title}: ยังไม่ได้ประเมินรายการนี้ ควรเช็กหน้างานและเลือกสถานะให้ครบ`
+          });
+        });
+
+        suggestions.sort((left, right) => left.priority - right.priority);
+
+        const list = document.getElementById('suggestion-list');
+        if (!summary.answeredApplicable && summary.notApplicable === 0) {
+          list.innerHTML = '<li>เริ่มจากกดสถานะในแต่ละข้อ แล้วระบบจะสรุปรายการที่ควรทำต่อให้อัตโนมัติ</li>';
+          return;
+        }
+
+        if (!suggestions.length) {
+          list.innerHTML = '<li>ทุกข้อที่เกี่ยวข้องถูกทำเครื่องหมายว่า พร้อม แล้ว ตรวจภาพและชื่อไฟล์หลักฐานก่อนส่งประเมินรอบจริง</li>';
+          return;
+        }
+
+        list.innerHTML = suggestions.slice(0, 12).map((item) => `<li>${escapeHtml(item.text)}</li>`).join('');
+      }
+
+      function updateCards() {
+        criteria.forEach((item) => {
+          const card = document.querySelector(`.criteria-card[data-item-id="${item.id}"]`);
+          if (!card) {
+            return;
+          }
+
+          const current = state[item.id] || '';
+          card.setAttribute('data-state', current);
+
+          card.querySelectorAll('.status-btn').forEach((button) => {
+            const selected = button.dataset.status === current;
+            button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+            button.classList.remove('active-ready', 'active-partial', 'active-missing', 'active-na');
+            if (selected) {
+              button.classList.add(statusMeta[current].buttonClass);
+            }
+          });
+        });
+      }
+
+      function updateSummary() {
+        const summary = computeSummary();
+        document.getElementById('score-title').textContent = summary.headline;
+        document.getElementById('score-value').textContent = `${summary.percent}%`;
+        document.getElementById('score-caption').textContent = summary.caption;
+        document.getElementById('ready-count').textContent = summary.ready;
+        document.getElementById('partial-count').textContent = summary.partial;
+        document.getElementById('missing-count').textContent = summary.missing;
+        document.getElementById('pending-count').textContent = summary.pending;
+
+        const ring = document.getElementById('score-ring');
+        ring.style.setProperty('--score', summary.percent);
+        ring.style.setProperty('--ring-color', summary.ringColor);
+
+        const pill = document.getElementById('score-status');
+        pill.className = `status-pill ${summary.pillClass}`;
+        pill.innerHTML = `<i class="fa fa-signal"></i><span>${escapeHtml(summary.pillText)}</span>`;
+
+        document.getElementById('progress-fill').style.width = `${summary.percent}%`;
+        buildSuggestions(summary);
+      }
+
+      function updateOverviewStats() {
+        document.getElementById('total-criteria').textContent = criteria.length;
+        document.getElementById('with-image-count').textContent = criteria.filter((item) => item.references.length > 0).length;
+        document.getElementById('missing-image-count').textContent = criteria.filter((item) => item.references.length === 0).length;
+      }
+
+      function syncUi() {
+        updateCards();
+        updateSummary();
+      }
+
+      renderSections();
+      updateOverviewStats();
+      syncUi();
+
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('.status-btn');
+        if (!button) {
+          return;
+        }
+
+        const itemId = button.dataset.itemId;
+        const status = button.dataset.status;
+        if (state[itemId] === status) {
+          delete state[itemId];
+        } else {
+          state[itemId] = status;
+        }
+        syncUi();
+      });
+
+      document.getElementById('reset-assessment').addEventListener('click', () => {
+        Object.keys(state).forEach((key) => delete state[key]);
+        syncUi();
+      });
+    </script>
+  </body>
+
+</html>
