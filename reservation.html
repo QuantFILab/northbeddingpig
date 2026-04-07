@@ -23,6 +23,75 @@
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
     <!-- Leaflet map CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <style>
+      .member-summary-card {
+        height: 100%;
+        border: 0;
+        border-radius: 18px;
+        background: linear-gradient(135deg, rgba(13, 92, 46, 0.12), rgba(143, 188, 73, 0.2));
+        box-shadow: 0 18px 42px rgba(16, 78, 41, 0.08);
+      }
+
+      .member-summary-card .metric-label {
+        display: block;
+        margin-bottom: 8px;
+        color: #2b5d3f;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .member-summary-card .metric-number {
+        margin: 0;
+        color: #164229;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .member-card-item {
+        height: 100%;
+        border: 1px solid rgba(22, 66, 41, 0.08);
+        border-radius: 18px;
+        box-shadow: 0 14px 34px rgba(16, 78, 41, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .member-card-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(16, 78, 41, 0.12);
+      }
+
+      .member-card-item.is-approved {
+        border-color: rgba(25, 135, 84, 0.45);
+        box-shadow: 0 20px 46px rgba(25, 135, 84, 0.14);
+      }
+
+      .member-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #176139, #8fb44d);
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .member-card-item.is-approved .member-avatar {
+        background: linear-gradient(135deg, #198754, #7bc67e);
+      }
+
+      .member-address {
+        min-height: 72px;
+      }
+
+      .member-empty-state {
+        border: 1px dashed rgba(22, 66, 41, 0.2);
+        border-radius: 18px;
+        background: rgba(13, 92, 46, 0.04);
+      }
+    </style>
 <!--
 
 TemplateMo 580 Woox Travel
@@ -97,53 +166,64 @@ https://templatemo.com/tm-580-woox-travel
       <div class="row mb-4">
         <div class="col-lg-12">
           <div class="section-heading text-center">
-            <h2>รายชื่อสมาชิกโครงการ</h2>
-            <p>ค้นหาด้วยชื่อ และกรองตามอำเภอในภาคเหนือ</p>
+            <h2>รายชื่อเกษตรกรจากไฟล์ล่าสุด</h2>
+            <p>ค้นหาด้วยชื่อ กรองตามพื้นที่ และตรวจสอบสถานะผู้ที่ผ่านเกณฑ์การคัดเลือก</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-lg-12">
+          <div class="alert alert-success shadow-sm border-0 text-center" style="border-radius: 16px;">
+            ผู้ผ่านเกณฑ์การคัดเลือกล่าสุดมี 1 ราย: <strong>นายจตุพร มูลอินทร์</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="member-summary-card p-4">
+            <span class="metric-label">จำนวนเกษตรกรทั้งหมด</span>
+            <p class="metric-number" id="member-total-count">0</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="member-summary-card p-4">
+            <span class="metric-label">ผ่านเกณฑ์การคัดเลือก</span>
+            <p class="metric-number" id="member-pass-count">0</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="member-summary-card p-4">
+            <span class="metric-label">อยู่ระหว่างตรวจสอบ</span>
+            <p class="metric-number" id="member-pending-count">0</p>
           </div>
         </div>
       </div>
 
       <!-- Filters -->
       <div class="row g-3 align-items-end mb-4">
-        <div class="col-md-6">
+        <div class="col-lg-4">
           <label for="member-search" class="form-label">ค้นหาชื่อสมาชิก</label>
-          <input id="member-search" type="text" class="form-control" placeholder="พิมพ์ชื่อ เช่น สมชาย">
+          <input id="member-search" type="text" class="form-control" placeholder="พิมพ์ชื่อ เช่น นายจตุพร มูลอินทร์">
         </div>
-        <div class="col-md-6">
-          <label for="district-filter" class="form-label">อำเภอ (ภาคเหนือ)</label>
-          <select id="district-filter" class="form-select">
+        <div class="col-lg-4">
+          <label for="location-filter" class="form-label">อำเภอ / จังหวัด</label>
+          <select id="location-filter" class="form-select">
             <option value="">ทั้งหมด</option>
-            <optgroup label="เชียงใหม่">
-              <option>เมืองเชียงใหม่</option>
-              <option>สันทราย</option>
-              <option>แม่ริม</option>
-              <option>ดอยสะเก็ด</option>
-              <option>หางดง</option>
-            </optgroup>
-            <optgroup label="เชียงราย">
-              <option>เมืองเชียงราย</option>
-              <option>แม่สาย</option>
-              <option>แม่จัน</option>
-              <option>เวียงชัย</option>
-            </optgroup>
-            <optgroup label="ลำพูน">
-              <option>เมืองลำพูน</option>
-              <option>ป่าซาง</option>
-            </optgroup>
-            <optgroup label="ลำปาง">
-              <option>เมืองลำปาง</option>
-              <option>ห้างฉัตร</option>
-            </optgroup>
-            <optgroup label="แพร่">
-              <option>เมืองแพร่</option>
-            </optgroup>
-            <optgroup label="น่าน">
-              <option>เมืองน่าน</option>
-            </optgroup>
-            <optgroup label="พะเยา">
-              <option>เมืองพะเยา</option>
-            </optgroup>
           </select>
+        </div>
+        <div class="col-lg-4">
+          <label for="group-filter" class="form-label">กลุ่มข้อมูล</label>
+          <select id="group-filter" class="form-select">
+            <option value="">ทั้งหมด</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-lg-12">
+          <p class="text-muted mb-0" id="member-results-text">กำลังโหลดข้อมูลเกษตรกร...</p>
         </div>
       </div>
 
@@ -154,36 +234,15 @@ https://templatemo.com/tm-580-woox-travel
             <table class="table table-hover table-striped align-middle mb-0">
               <thead class="table-success">
                 <tr>
-                  <th style="width:72px;">รูป</th>
+                  <th style="width:72px;">ลำดับ</th>
                   <th>ชื่อ</th>
-                  <th>เครือข่าย</th>
-                  <th>อำเภอ</th>
+                  <th>กลุ่มข้อมูล</th>
+                  <th>ที่อยู่</th>
+                  <th>อำเภอ / จังหวัด</th>
                   <th>สถานะ</th>
                 </tr>
               </thead>
-              <tbody id="member-table-body">
-                <tr class="member-row" data-name="สมชาย ใจดี" data-district="สันทราย" data-status="pass">
-                  <td><img src="assets/images/deals-01.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
-                  <td>สมชาย ใจดี</td>
-                  <td>เครือข่ายหมูหลุมเชียงใหม่</td>
-                  <td>สันทราย</td>
-                  <td><span class="badge bg-success">ผ่านการรับรอง</span></td>
-                </tr>
-                <tr class="member-row" data-name="ศิรินภา มีสุข" data-district="แม่ริม" data-status="pending">
-                  <td><img src="assets/images/deals-02.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
-                  <td>ศิรินภา มีสุข</td>
-                  <td>เครือข่ายการเลี้ยงอินทรีย์</td>
-                  <td>แม่ริม</td>
-                  <td><span class="badge bg-warning text-dark">ยังไม่ผ่านการรับรอง</span></td>
-                </tr>
-                <tr class="member-row" data-name="มนตรี คำแหง" data-district="เมืองเชียงราย" data-status="pass">
-                  <td><img src="assets/images/deals-03.jpg" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:8px;"></td>
-                  <td>มนตรี คำแหง</td>
-                  <td>เครือข่ายหมูหลุมเชียงราย</td>
-                  <td>เมืองเชียงราย</td>
-                  <td><span class="badge bg-success">ผ่านการรับรอง</span></td>
-                </tr>
-              </tbody>
+              <tbody id="member-table-body"></tbody>
             </table>
           </div>
         </div>
@@ -197,49 +256,7 @@ https://templatemo.com/tm-580-woox-travel
       </div>
 
       <!-- Member Cards -->
-      <div class="row g-4" id="member-card-grid">
-        <div class="col-sm-6 col-lg-4 member-card" data-name="สมชาย ใจดี" data-district="สันทราย" data-status="pass">
-          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
-            <img src="assets/images/deals-01.jpg" class="card-img-top" alt="สมชาย ใจดี" style="height:180px;object-fit:cover;">
-            <div class="card-body">
-              <h5 class="card-title mb-1">สมชาย ใจดี</h5>
-              <p class="text-muted mb-2">เครือข่ายหมูหลุมเชียงใหม่</p>
-              <div class="d-flex flex-wrap gap-2 align-items-center">
-                <span class="badge bg-success">ผ่านการรับรอง</span>
-                <span class="badge bg-secondary">สันทราย</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 member-card" data-name="ศิรินภา มีสุข" data-district="แม่ริม" data-status="pending">
-          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
-            <img src="assets/images/deals-02.jpg" class="card-img-top" alt="ศิรินภา มีสุข" style="height:180px;object-fit:cover;">
-            <div class="card-body">
-              <h5 class="card-title mb-1">ศิรินภา มีสุข</h5>
-              <p class="text-muted mb-2">เครือข่ายการเลี้ยงอินทรีย์</p>
-              <div class="d-flex flex-wrap gap-2 align-items-center">
-                <span class="badge bg-warning text-dark">ยังไม่ผ่านการรับรอง</span>
-                <span class="badge bg-secondary">แม่ริม</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-lg-4 member-card" data-name="มนตรี คำแหง" data-district="เมืองเชียงราย" data-status="pass">
-          <div class="card h-100 shadow-sm border-0" style="border-radius:16px; overflow:hidden;">
-            <img src="assets/images/deals-03.jpg" class="card-img-top" alt="มนตรี คำแหง" style="height:180px;object-fit:cover;">
-            <div class="card-body">
-              <h5 class="card-title mb-1">มนตรี คำแหง</h5>
-              <p class="text-muted mb-2">เครือข่ายหมูหลุมเชียงราย</p>
-              <div class="d-flex flex-wrap gap-2 align-items-center">
-                <span class="badge bg-success">ผ่านการรับรอง</span>
-                <span class="badge bg-secondary">เมืองเชียงราย</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row g-4" id="member-card-grid"></div>
     </div>
   </section>
 
@@ -269,91 +286,275 @@ https://templatemo.com/tm-580-woox-travel
   <script src="assets/js/custom.js"></script>
   <!-- Leaflet map JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="assets/js/reservation-members.js"></script>
 
   <script>
-    // Simple filter for members table and cards
     (function(){
-      const $search = document.getElementById('member-search');
-      const $district = document.getElementById('district-filter');
-      if(!$search || !$district) return;
-
-      const normalize = (s) => (s || '').toString().trim().toLowerCase();
-
-      function applyFilter(){
-        const q = normalize($search.value);
-        const d = normalize($district.value);
-
-        // Table rows
-        document.querySelectorAll('.member-row').forEach(row => {
-          const name = normalize(row.getAttribute('data-name'));
-          const dist = normalize(row.getAttribute('data-district'));
-          const okName = !q || name.includes(q);
-          const okDist = !d || dist === d;
-          row.style.display = (okName && okDist) ? '' : 'none';
-        });
-
-        // Cards
-        document.querySelectorAll('.member-card').forEach(card => {
-          const name = normalize(card.getAttribute('data-name'));
-          const dist = normalize(card.getAttribute('data-district'));
-          const okName = !q || name.includes(q);
-          const okDist = !d || dist === d;
-          card.style.display = (okName && okDist) ? '' : 'none';
-        });
-      }
-
-      $search.addEventListener('input', applyFilter);
-      $district.addEventListener('change', applyFilter);
-    })();
-  </script>
-
-  <script>
-    // Initialize map and bind markers to filter cards by district
-    (function(){
+      const rawMembers = Array.isArray(window.RESERVATION_MEMBERS) ? window.RESERVATION_MEMBERS : [];
+      const searchEl = document.getElementById('member-search');
+      const locationEl = document.getElementById('location-filter');
+      const groupEl = document.getElementById('group-filter');
+      const tableBody = document.getElementById('member-table-body');
+      const cardGrid = document.getElementById('member-card-grid');
+      const resultsText = document.getElementById('member-results-text');
+      const totalCountEl = document.getElementById('member-total-count');
+      const passCountEl = document.getElementById('member-pass-count');
+      const pendingCountEl = document.getElementById('member-pending-count');
       const mapEl = document.getElementById('member-map');
-      if(!mapEl || typeof L === 'undefined') return;
 
-      const thaiBounds = L.latLngBounds([5.5, 97.3], [20.7, 105.9]);
-      const map = L.map('member-map', {
-        maxBounds: thaiBounds,
-        maxBoundsViscosity: 1.0,
-        minZoom: 5,
-        worldCopyJump: false
-      }).setView([18.7883, 99.0], 7);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
+      if(!searchEl || !locationEl || !groupEl || !tableBody || !cardGrid || !resultsText) return;
 
-      // Approximate coordinates for selected northern districts
-      const coords = {
-        'สันทราย': [18.833, 99.028],
-        'แม่ริม': [18.939, 98.944],
-        'เมืองเชียงใหม่': [18.788, 98.985],
-        'เมืองเชียงราย': [19.910, 99.839]
+      const escapeHtml = (value) => (value || '')
+        .toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+      const normalize = (value) => (value || '').toString().trim().toLowerCase();
+      const inferredProvinceByDistrict = {
+        'เชียงดาว': 'เชียงใหม่',
+        'แม่แจ่ม': 'เชียงใหม่',
+        'แม่ริม': 'เชียงใหม่',
+        'แม่แตง': 'เชียงใหม่',
+        'สะเมิง': 'เชียงใหม่',
+        'สันทราย': 'เชียงใหม่',
+        'ดอยสะเก็ด': 'เชียงใหม่',
+        'หางดง': 'เชียงใหม่',
+        'ไชยปราการ': 'เชียงใหม่'
       };
 
-      const seen = new Set();
-      document.querySelectorAll('.member-card').forEach(card => {
-        const district = (card.getAttribute('data-district')||'').trim();
-        if(!district || seen.has(district) || !coords[district]) return;
-        seen.add(district);
-        const marker = L.marker(coords[district]).addTo(map).bindPopup(district);
-        marker.on('click', () => {
-          const sel = document.getElementById('district-filter');
-          if(sel){ sel.value = district; sel.dispatchEvent(new Event('change')); }
-          const grid = document.getElementById('member-card-grid');
-          if(grid){ grid.scrollIntoView({behavior:'smooth', block:'start'}); }
+      const locationCoords = {
+        'เชียงดาว|เชียงใหม่': [19.388, 98.965],
+        'แม่แจ่ม|เชียงใหม่': [18.494, 98.366],
+        'แม่ริม|เชียงใหม่': [18.926, 98.944],
+        'แม่แตง|เชียงใหม่': [19.149, 98.934],
+        'สะเมิง|เชียงใหม่': [18.849, 98.688],
+        'สันทราย|เชียงใหม่': [18.879, 99.031],
+        'ดอยสะเก็ด|เชียงใหม่': [18.874, 99.131],
+        'หางดง|เชียงใหม่': [18.688, 98.919],
+        'เมือง|เชียงใหม่': [18.788, 98.985],
+        'ไชยปราการ|เชียงใหม่': [19.701, 99.138],
+        'พยาเม็งราย|เชียงราย': [19.523, 100.185],
+        'เมือง|พะเยา': [19.168, 99.899]
+      };
+
+      const members = rawMembers
+        .map((member, index) => {
+          const district = (member.district || '').trim();
+          const province = (member.province || inferredProvinceByDistrict[district] || '').trim();
+          const locationKey = [district, province].join('|');
+          const locationLabel = [district, province].filter(Boolean).join(' / ') || 'ไม่ระบุพื้นที่';
+          const status = member.status === 'pass' ? 'pass' : 'pending';
+          const shortName = (member.name || '').replace(/^(นาย|นางสาว|นาง|น\.ส\.|ร้อยโท|จ่าสิบเอก|พลทหาร)\s*/u, '').trim();
+          return {
+            id: index + 1,
+            name: (member.name || 'ไม่ระบุชื่อ').trim(),
+            address: (member.address || 'ไม่ระบุที่อยู่').trim(),
+            group: (member.group || 'ไม่ระบุกลุ่มข้อมูล').trim(),
+            district,
+            province,
+            locationKey,
+            locationLabel,
+            status,
+            statusLabel: status === 'pass' ? 'ผ่านเกณฑ์' : 'รอตรวจสอบ',
+            badgeClass: status === 'pass' ? 'bg-success' : 'bg-warning text-dark',
+            avatarLabel: (shortName.charAt(0) || String(index + 1)).toUpperCase()
+          };
+        })
+        .sort((left, right) => {
+          if (left.status !== right.status) {
+            return left.status === 'pass' ? -1 : 1;
+          }
+          if (left.group !== right.group) {
+            return left.group.localeCompare(right.group, 'th');
+          }
+          return left.name.localeCompare(right.name, 'th');
         });
+
+      totalCountEl.textContent = String(members.length);
+      passCountEl.textContent = String(members.filter(member => member.status === 'pass').length);
+      pendingCountEl.textContent = String(members.filter(member => member.status !== 'pass').length);
+
+      const uniqueLocations = Array.from(
+        new Map(
+          members.map(member => [
+            member.locationKey,
+            { key: member.locationKey, label: member.locationLabel }
+          ])
+        ).values()
+      )
+        .filter(location => location.key !== '|')
+        .sort((left, right) => left.label.localeCompare(right.label, 'th'));
+
+      const uniqueGroups = Array.from(new Set(members.map(member => member.group)))
+        .sort((left, right) => left.localeCompare(right, 'th'));
+
+      uniqueLocations.forEach(location => {
+        const option = document.createElement('option');
+        option.value = location.key;
+        option.textContent = location.label;
+        locationEl.appendChild(option);
       });
 
-      // Fit bounds to markers if any
-      if(seen.size){
-        const latlngs = Array.from(seen).map(d => coords[d]);
-        map.fitBounds(latlngs, { padding: [20,20] });
-      } else {
-        map.fitBounds(thaiBounds, { padding: [20,20] });
+      uniqueGroups.forEach(group => {
+        const option = document.createElement('option');
+        option.value = group;
+        option.textContent = group;
+        groupEl.appendChild(option);
+      });
+
+      let map = null;
+      let markerLayer = null;
+
+      if(mapEl && typeof L !== 'undefined'){
+        const thaiBounds = L.latLngBounds([5.5, 97.3], [20.7, 105.9]);
+        map = L.map('member-map', {
+          maxBounds: thaiBounds,
+          maxBoundsViscosity: 1.0,
+          minZoom: 5,
+          worldCopyJump: false
+        }).setView([18.7883, 98.9853], 7);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        markerLayer = L.layerGroup().addTo(map);
       }
+
+      function renderTable(filteredMembers){
+        if(!filteredMembers.length){
+          tableBody.innerHTML = '<tr><td colspan="6" class="text-center text-muted py-4">ไม่พบข้อมูลเกษตรกรตามเงื่อนไขที่เลือก</td></tr>';
+          return;
+        }
+
+        tableBody.innerHTML = filteredMembers.map((member, index) => `
+          <tr class="${member.status === 'pass' ? 'table-success' : ''}">
+            <td>${index + 1}</td>
+            <td>
+              <strong>${escapeHtml(member.name)}</strong>
+            </td>
+            <td>${escapeHtml(member.group)}</td>
+            <td>${escapeHtml(member.address)}</td>
+            <td>${escapeHtml(member.locationLabel)}</td>
+            <td><span class="badge ${member.badgeClass}">${escapeHtml(member.statusLabel)}</span></td>
+          </tr>
+        `).join('');
+      }
+
+      function renderCards(filteredMembers){
+        if(!filteredMembers.length){
+          cardGrid.innerHTML = `
+            <div class="col-12">
+              <div class="member-empty-state p-5 text-center">
+                <h5 class="mb-2">ไม่พบรายชื่อที่ตรงกับการค้นหา</h5>
+                <p class="text-muted mb-0">ลองล้างคำค้นหา หรือเปลี่ยนตัวกรองอำเภอและกลุ่มข้อมูล</p>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        cardGrid.innerHTML = filteredMembers.map(member => `
+          <div class="col-sm-6 col-xl-4">
+            <div class="member-card-item ${member.status === 'pass' ? 'is-approved' : ''} p-4">
+              <div class="d-flex align-items-start justify-content-between gap-3 mb-3">
+                <div class="member-avatar">${escapeHtml(member.avatarLabel)}</div>
+                <span class="badge ${member.badgeClass}">${escapeHtml(member.statusLabel)}</span>
+              </div>
+              <h5 class="mb-2">${escapeHtml(member.name)}</h5>
+              <p class="text-muted mb-2">${escapeHtml(member.group)}</p>
+              <p class="member-address mb-3">${escapeHtml(member.address)}</p>
+              <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-secondary">${escapeHtml(member.locationLabel)}</span>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      function renderMap(filteredMembers){
+        if(!map || !markerLayer) return;
+
+        markerLayer.clearLayers();
+
+        const markerGroups = filteredMembers.reduce((acc, member) => {
+          if(!locationCoords[member.locationKey]) return acc;
+          if(!acc[member.locationKey]){
+            acc[member.locationKey] = {
+              label: member.locationLabel,
+              count: 0,
+              approved: 0
+            };
+          }
+          acc[member.locationKey].count += 1;
+          if(member.status === 'pass'){
+            acc[member.locationKey].approved += 1;
+          }
+          return acc;
+        }, {});
+
+        const latlngs = [];
+
+        Object.keys(markerGroups).forEach(locationKey => {
+          const info = markerGroups[locationKey];
+          const coords = locationCoords[locationKey];
+          latlngs.push(coords);
+
+          const marker = L.circleMarker(coords, {
+            radius: info.approved ? 10 : 8,
+            color: info.approved ? '#198754' : '#5f7f50',
+            fillColor: info.approved ? '#3eb26f' : '#98b26a',
+            fillOpacity: 0.88,
+            weight: 2
+          }).addTo(markerLayer);
+
+          marker.bindPopup(`
+            <strong>${escapeHtml(info.label)}</strong><br>
+            เกษตรกร ${info.count} ราย<br>
+            ผ่านเกณฑ์ ${info.approved} ราย
+          `);
+
+          marker.on('click', () => {
+            locationEl.value = locationKey;
+            applyFilter();
+            cardGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+
+        if(latlngs.length){
+          map.fitBounds(latlngs, { padding: [20, 20] });
+        } else {
+          map.setView([18.7883, 98.9853], 7);
+        }
+      }
+
+      function applyFilter(){
+        const searchValue = normalize(searchEl.value);
+        const locationValue = locationEl.value;
+        const groupValue = groupEl.value;
+
+        const filteredMembers = members.filter(member => {
+          const matchesSearch = !searchValue || normalize(member.name).includes(searchValue) || normalize(member.address).includes(searchValue);
+          const matchesLocation = !locationValue || member.locationKey === locationValue;
+          const matchesGroup = !groupValue || member.group === groupValue;
+          return matchesSearch && matchesLocation && matchesGroup;
+        });
+
+        resultsText.textContent = `แสดง ${filteredMembers.length} จาก ${members.length} รายชื่อ`;
+        renderTable(filteredMembers);
+        renderCards(filteredMembers);
+        renderMap(filteredMembers);
+      }
+
+      searchEl.addEventListener('input', applyFilter);
+      locationEl.addEventListener('change', applyFilter);
+      groupEl.addEventListener('change', applyFilter);
+
+      applyFilter();
     })();
   </script>
 
@@ -367,5 +568,4 @@ https://templatemo.com/tm-580-woox-travel
   </body>
 
 </html>
-
 
