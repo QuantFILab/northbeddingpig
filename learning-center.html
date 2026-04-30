@@ -1,0 +1,488 @@
+﻿﻿<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>การเรียนรู้ - ฟาร์มหมูหลุม</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+    <!-- Luxury Green theme overrides -->
+    <link rel="stylesheet" href="assets/css/theme-lux-green.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/seminar-pages.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <style>
+      /* Compact deal buttons */
+      .main-button a.btn-compact {
+        padding: 6px 14px;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+
+      .seminar-section-intro {
+        color: #55655b;
+        max-width: 760px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+    </style>
+<!--
+
+TemplateMo 580 Woox Travel
+
+https://templatemo.com/tm-580-woox-travel
+
+-->
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="project-about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="learning-center.html" class="active">การเรียนรู้</a></li>
+                        <li><a href="research-library.html">คลังวิจัย</a></li>
+                        <li><a href="member-directory.html">รายชื่อสมาชิก</a></li>
+                        <li><a href="farm-self-check.html">ประเมินฟาร์มเบื้องต้น</a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>การอบรม</h4>
+          <h2>เลือกเรียนรู้หมูหลุมและเกษตรอย่างมั่นใจ</h2>
+          <div class="border-button"><a href="project-about.html">ดูรายละเอียดเพิ่มเติม</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="search-form" name="gs" method="submit" role="search" action="#">
+            <div class="row">
+              <div class="col-lg-2">
+                <h4>ค้นหาหมวด/รูปแบบ:</h4>
+              </div>
+              <div class="col-lg-3">
+                  <fieldset>
+                      <select name="Topic" class="form-select" aria-label="Default select example" id="chooseLocation" onChange="this.form.click()">
+                          <option value="" selected>เลือกหมวด</option>
+                          <option value="imo">จุลินทรีย์ท้องถิ่น</option>
+                          <option value="feed">อาหารหมักและน้ำหมักชีวภาพ</option>
+                          <option value="standards">มาตรฐานฟาร์มและป้องกันโรค</option>
+                          <option value="processing">แปรรูปและเพิ่มมูลค่า</option>
+                          <option value="exchange">ขยายผลและแลกเปลี่ยนเรียนรู้</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-3">
+                  <fieldset>
+                      <select name="Level" class="form-select" aria-label="Default select example" id="choosePrice" onChange="this.form.click()">
+                          <option value="" selected>เลือกรูปแบบ</option>
+                          <option value="lecture">บรรยายและสาธิต</option>
+                          <option value="workshop">เชิงปฏิบัติการ</option>
+                          <option value="certification">มาตรฐานและรับรอง</option>
+                          <option value="network">แลกเปลี่ยนเรียนรู้</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-4">
+                  <fieldset>
+                      <input type="text" id="searchKeyword" class="form-control" placeholder="ค้นหาการอบรมด้วยคำค้น (เช่น จุลินทรีย์, อาหารหมัก, มาตรฐาน)">
+                  </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="amazing-deals">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+          <div class="section-heading text-center">
+            <h2>การอบรม</h2>
+            <p class="seminar-section-intro">นำข้อมูลจริงจากเอกสารการอบรมมาแสดงเป็นรายการสัมมนา 5 ชุด แต่ละการ์ดสามารถกดเข้าไปดูรายละเอียด รอบการอบรม และภาพกิจกรรมจากเอกสารต้นฉบับได้โดยตรง</p>
+          </div>
+        </div>
+        <div class="col-12">
+          <div id="seminarTrainingGrid" class="row g-4"></div>
+          <div id="seminarEmptyState" class="seminar-empty-state">ไม่พบการอบรมที่ตรงกับเงื่อนไขที่ค้นหา ลองเปลี่ยนหมวด รูปแบบ หรือคำค้นอีกครั้ง</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <div class="row mb-4">
+      <div class="col-lg-8">
+        <div class="section-heading">
+          <h2>วิดีโอชุด 8 ตอนจบ หมูหลุม "นวัตกรรมไร้กลิ่น"</h2>
+          <p>โดย มรภ.ชม., มช., สวพส. และกรมปศุสัตว์ สนับสนุนโดย สำนักงานพัฒนาการวิจัยการเกษตร (องค์การมหาชน) ออกอากาศต่อเนื่องทาง NBT เช้านี้ที่ภาคเหนือ ระหว่าง 16-25 ก.พ. 2569</p>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div style="height:100%;background:#fff;border-radius:18px;padding:18px 20px;border:1px solid rgba(15,81,50,.08);box-shadow:0 14px 30px rgba(15,81,50,.08);">
+          <h5 style="margin-bottom:8px;color:#0f5132;">ครบองค์ความรู้งานวิจัยใช้ประโยชน์</h5>
+          <p style="margin:0;color:#5b695f;line-height:1.8;">ครอบคลุมตั้งแต่จุลินทรีย์ อาหารหมัก โครงสร้างฟาร์ม การรับรองมาตรฐาน การแปรรูป ไปจนถึงการตลาดและการสร้างแบรนด์.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="beginner">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/lXSl3gBCdiI?rel=0&modestbranding=1" title="ตอนที่ 1 หมูหลุม นวัตกรรมไร้กลิ่น" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>ตอนที่ 1 หมูหลุม "นวัตกรรมไร้กลิ่น"</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">16 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>เปิดซีรีส์ด้วยภาพรวมหมูหลุมจากงานวิจัยและแนวคิด "นวัตกรรมไร้กลิ่น" ที่นำไปใช้ได้จริง.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/lXSl3gBCdiI" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="beginner">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/8G3Z3Q5PUbs?rel=0&modestbranding=1" title="ตอนที่ 2 ครบองค์ความรู้งานวิจัยใช้ประโยชน์" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>ตอนที่ 2 ครบองค์ความรู้งานวิจัยใช้ประโยชน์</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">17 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>สรุปองค์ความรู้หลักของระบบหมูหลุมและการขยายผลจากงานวิจัยสู่เครือข่ายเกษตรกร.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: เริ่มต้น</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/8G3Z3Q5PUbs" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="intermediate">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/tN65fElZmh4?rel=0&modestbranding=1" title="หมูหลุม ใช้จุลินทรีย์ท้องถิ่น" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - ใช้จุลินทรีย์ท้องถิ่น</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">18 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>อธิบายบทบาทของจุลินทรีย์ท้องถิ่นและวิธีนำมาใช้เพื่อสนับสนุนระบบหมูหลุม.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: กลาง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/tN65fElZmh4" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="intermediate">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/yJrhbfUKPs4?rel=0&modestbranding=1" title="การทำพืชอาหารหมักและน้ำหมักชีวภาพ" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - การทำพืชอาหารหมักและน้ำหมักชีวภาพ</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">19 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>แนะนำการเตรียมพืชอาหารหมักและน้ำหมักชีวภาพเพื่อช่วยลดต้นทุนและยกระดับการจัดการฟาร์ม.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: กลาง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/yJrhbfUKPs4" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="health" data-level="intermediate">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/XqOctFbmXFg?rel=0&modestbranding=1" title="โครงสร้างและความเป็นอยู่ของสุกร" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - โครงสร้างและความเป็นอยู่ของสุกร</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">20 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>ทำความเข้าใจเรื่องโรงเรือน สวัสดิภาพสัตว์ และการจัดสภาพแวดล้อมที่เหมาะสมสำหรับสุกร.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-info text-dark">หมวด: สุขภาพสัตว์</span>
+              <span class="badge bg-secondary">ระดับ: กลาง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/XqOctFbmXFg" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="housing" data-level="advanced">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/KOKl6J2Hce4?rel=0&modestbranding=1" title="ขั้นตอนขอรับรองและการพัฒนาอย่างยั่งยืน" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - ขั้นตอนขอรับรองและการพัฒนาอย่างยั่งยืน</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">23 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>อธิบายขั้นตอนเตรียมความพร้อมเพื่อขอรับรองมาตรฐานและการพัฒนาฟาร์มอย่างยั่งยืน.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: การจัดการโรงเรือน</span>
+              <span class="badge bg-secondary">ระดับ: ขั้นสูง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/KOKl6J2Hce4" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="advanced">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/LkOtbRddkhM?rel=0&modestbranding=1" title="จากเนื้อสดสู่ผลิตภัณฑ์คุณภาพ" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - จากเนื้อสดสู่ผลิตภัณฑ์คุณภาพ</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">24 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>ต่อยอดผลผลิตหมูหลุมจากเนื้อสดสู่ผลิตภัณฑ์คุณภาพและเพิ่มมูลค่าให้สินค้าเกษตร.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: ขั้นสูง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/LkOtbRddkhM?si=O4rk2cTzygxk13mv" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 mb-4">
+        <div class="item" data-topic="basic" data-level="advanced">
+          <div class="image ratio ratio-16x9">
+            <iframe class="w-100 h-100 rounded" src="https://www.youtube.com/embed/eBdONXxM5qc?rel=0&modestbranding=1" title="กลยุทธ์การตลาดและการสร้างแบรนด์" frameborder="0" loading="lazy" referrerpolicy="origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="content mt-3">
+            <span class="info">NBT เช้านี้ที่ภาคเหนือ</span>
+            <h4>หมูหลุม - กลยุทธ์การตลาดและการสร้างแบรนด์</h4>
+            <div class="row">
+              <div class="col-6">
+                <i class="fa fa-clock"></i>
+                <span class="list">25 ก.พ. 2569</span>
+              </div>
+              <div class="col-6">
+                <i class="fa fa-play-circle"></i>
+                <span class="list">YouTube</span>
+              </div>
+            </div>
+            <p>สรุปแนวทางวางกลยุทธ์การตลาดและการสร้างแบรนด์เพื่อเพิ่มโอกาสทางการขายสินค้าหมูหลุม.</p>
+            <div class="filter-labels mt-2">
+              <span class="badge bg-success">หมวด: พื้นฐานหมูหลุม</span>
+              <span class="badge bg-secondary">ระดับ: ขั้นสูง</span>
+            </div>
+            <div class="main-button mt-3">
+              <a class="btn-compact" href="https://youtu.be/eBdONXxM5qc" target="_blank" rel="noopener">ดูบน YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>© ฟาร์มหมูหลุม 2025<br>พัฒนาเพื่อการเรียนรู้และท่องเที่ยวเชิงเกษตร</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+  <script src="assets/js/seminar-pages.js"></script>
+
+  <script>
+    (function($){
+      window.renderSeminarTrainingCards('seminarTrainingGrid');
+      const $topic = $('#chooseLocation');
+      const $level = $('#choosePrice');
+      const $keyword = $('#searchKeyword');
+      const $empty = $('#seminarEmptyState');
+
+      function applyFilters(){
+        const topicVal = $topic.val();
+        const levelVal = $level.val();
+        const keyword = ($keyword.val() || '').toLowerCase().trim();
+        const $items = $('#seminarTrainingGrid .seminar-training-card');
+        let visibleCount = 0;
+        $items.each(function(){
+          const $item = $(this);
+          const matchTopic = !topicVal || $item.data('topic') === topicVal;
+          const matchLevel = !levelVal || $item.data('level') === levelVal;
+          const text = $item.text().toLowerCase();
+          const matchKeyword = !keyword || text.indexOf(keyword) !== -1;
+          const $wrap = $item.closest('.col-lg-6, .col-md-6, .col-sm-6');
+          const $target = $wrap.length ? $wrap : $item;
+          const isMatch = matchTopic && matchLevel && matchKeyword;
+          $target.toggle(isMatch);
+          if (isMatch) visibleCount += 1;
+        });
+        $empty.toggle(visibleCount === 0);
+      }
+
+      $topic.on('change', applyFilters);
+      $level.on('change', applyFilters);
+      $keyword.on('input', applyFilters);
+      applyFilters();
+
+      $(".option").click(function(){
+        $(".option").removeClass("active");
+        $(this).addClass("active"); 
+      });
+    })(jQuery);
+  </script>
+
+  </body>
+
+</html>
+
+
+
