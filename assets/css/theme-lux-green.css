@@ -60,6 +60,29 @@ html, body {
   font-family: 'Kanit', 'Poppins', sans-serif !important;
 }
 
+html {
+  font-size: 16.5px;
+}
+
+body {
+  font-size: 1.03rem;
+  line-height: 1.7;
+}
+
+.header-area .main-nav .nav li a {
+  font-size: 16px !important;
+}
+
+p,
+li,
+.list,
+.info,
+.form-control,
+.form-select,
+.section-heading p {
+  font-size: 1rem;
+}
+
 /* Second-page heading button styling */
 .second-page-heading .main-button a {
   border-color: #fff !important;
