@@ -124,6 +124,87 @@
         font-size: 14px;
       }
 
+      .certified-showcase {
+        margin-top: 24px;
+      }
+
+      .certified-showcase .section-heading-row {
+        margin-bottom: 18px;
+      }
+
+      .certified-showcase-note {
+        color: var(--check-muted);
+        margin-bottom: 22px;
+      }
+
+      .certified-farm-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .certified-farm-card {
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        background: linear-gradient(180deg, #ffffff 0%, #fbfdf9 100%);
+        box-shadow: 0 16px 34px rgba(15, 81, 50, 0.08);
+      }
+
+      .certified-farm-media {
+        position: relative;
+        display: block;
+        overflow: hidden;
+      }
+
+      .certified-farm-media img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        transition: transform 0.25s ease;
+      }
+
+      .certified-farm-card:hover .certified-farm-media img {
+        transform: scale(1.03);
+      }
+
+      .certified-farm-badge {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(15, 81, 50, 0.84);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .certified-farm-body {
+        padding: 18px 20px 20px;
+      }
+
+      .certified-farm-body h4 {
+        color: var(--check-forest);
+        margin-bottom: 6px;
+      }
+
+      .certified-farm-body p {
+        color: var(--check-muted);
+        margin-bottom: 14px;
+      }
+
+      .certified-farm-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--check-forest);
+        font-weight: 600;
+      }
+
       .score-card {
         padding: 26px;
         position: sticky;
@@ -558,6 +639,10 @@
         .section-heading-row {
           flex-direction: column;
         }
+
+        .certified-farm-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
       }
     </style>
 
@@ -609,7 +694,7 @@
             <h4>สำหรับเกษตรกรผู้เลี้ยงหมูหลุม</h4>
             <h2>เช็กภาพหลักฐานและความพร้อมของฟาร์มด้วยตัวเอง</h2>
             <p>
-              หน้าเดียวจบสำหรับตรวจรายการสำคัญ ข้อที่ต้องมีภาพอ้างอิง และรายการที่ยังขาดจาก PowerPoint
+              หน้าเดียวจบสำหรับตรวจรายการสำคัญ ข้อที่ต้องมีภาพอ้างอิง และตัวอย่างจากฟาร์มที่ผ่านการรับรองจริง
               ระบบจะคำนวณคะแนนให้ทันทีและสรุปว่าควรทำอะไรต่อก่อนส่งประเมิน
             </p>
             <div class="hero-actions">
@@ -649,13 +734,27 @@
                 </div>
                 <div class="mini-stat">
                   <strong id="with-image-count">0</strong>
-                  <span>รายการที่มีภาพตัวอย่างจาก PowerPoint</span>
+                  <span>รายการที่มีภาพตัวอย่างประกอบ</span>
                 </div>
                 <div class="mini-stat">
                   <strong id="missing-image-count">0</strong>
                   <span>รายการที่ยังไม่มีภาพอ้างอิงในไฟล์</span>
                 </div>
               </div>
+            </section>
+
+            <section class="section-card certified-showcase">
+              <div class="section-heading-row">
+                <div>
+                  <h3>ตัวอย่างฟาร์มที่ผ่านการรับรอง</h3>
+                  <p>ใช้เป็นแนวทางดูภาพจริงของฟาร์มที่จัดหลักฐานพร้อมแล้วก่อนยื่นประเมิน</p>
+                </div>
+                <span class="section-tag"><i class="fa fa-camera-retro"></i> 14 ชุดภาพ</span>
+              </div>
+              <p class="certified-showcase-note">
+                ภาพชุดนี้มาจากฟาร์มที่ผ่านการจัดเตรียมหลักฐานแล้ว ช่วยให้เห็นสภาพป้ายฟาร์ม ผู้ประกอบการ และบรรยากาศหน้างานจริง
+              </p>
+              <div class="certified-farm-grid" id="certified-farm-gallery"></div>
             </section>
 
             <div id="criteria-sections"></div>
@@ -779,6 +878,23 @@
           title: 'น้ำเสีย ของเสีย และสิ่งแวดล้อม',
           description: 'เกณฑ์ที่สะท้อนการจัดการของเสีย ความสะอาด และผลกระทบต่อสิ่งแวดล้อม'
         }
+      ];
+
+      const certifiedFarmExamples = [
+        { name: 'กอบแก้ว', image: 'assets/images/certified-farms/กอบแก้ว/Slide2.PNG' },
+        { name: 'จินตนา', image: 'assets/images/certified-farms/จินตนา/Slide2.PNG' },
+        { name: 'ณิชากร', image: 'assets/images/certified-farms/ณิชากร/Slide2.PNG' },
+        { name: 'นิภาพร', image: 'assets/images/certified-farms/นิภาพร/Slide2.PNG' },
+        { name: 'บุญทอง', image: 'assets/images/certified-farms/บุญทอง/Slide2.PNG' },
+        { name: 'เบอะชิ', image: 'assets/images/certified-farms/เบอะชิ/Slide2.PNG' },
+        { name: 'ประพันธ์', image: 'assets/images/certified-farms/ประพันธ์/Slide2.PNG' },
+        { name: 'ผ่องพรรณ', image: 'assets/images/certified-farms/ผ่องพรรณ/Slide2.PNG' },
+        { name: 'เพ็ญนภา', image: 'assets/images/certified-farms/เพ็ญนภา/Slide2.PNG' },
+        { name: 'รุ่งนภา', image: 'assets/images/certified-farms/รุ่งนภา/Slide2.PNG' },
+        { name: 'วอดี', image: 'assets/images/certified-farms/วอดี/Slide2.PNG' },
+        { name: 'สมเพชร', image: 'assets/images/certified-farms/สมเพชร/Slide2.PNG' },
+        { name: 'สุกัญญา', image: 'assets/images/certified-farms/สุกัญญา/Slide2.PNG' },
+        { name: 'อัศนี', image: 'assets/images/certified-farms/อัศนี/Slide2.PNG' }
       ];
 
       const criteria = [
@@ -1363,6 +1479,30 @@
         }).join('');
       }
 
+      function renderCertifiedFarmGallery() {
+        const container = document.getElementById('certified-farm-gallery');
+        if (!container) {
+          return;
+        }
+
+        container.innerHTML = certifiedFarmExamples.map((item) => `
+          <article class="certified-farm-card">
+            <a class="certified-farm-media" href="${escapeHtml(item.image)}" target="_blank" rel="noopener">
+              <img src="${escapeHtml(item.image)}" alt="ตัวอย่างฟาร์มที่ผ่านการรับรอง ${escapeHtml(item.name)}" loading="lazy">
+              <span class="certified-farm-badge"><i class="fa fa-check-circle"></i> ผ่านการรับรอง</span>
+            </a>
+            <div class="certified-farm-body">
+              <h4>ตัวอย่างฟาร์ม ${escapeHtml(item.name)}</h4>
+              <p>ภาพอ้างอิงจากชุดฟาร์มที่จัดหลักฐานครบ ใช้ดูแนวทางการถ่ายภาพและการจัดสภาพหน้างานจริง</p>
+              <a class="certified-farm-link" href="${escapeHtml(item.image)}" target="_blank" rel="noopener">
+                <i class="fa fa-search-plus"></i>
+                เปิดภาพเต็ม
+              </a>
+            </div>
+          </article>
+        `).join('');
+      }
+
       function computeSummary() {
         const applicableItems = criteria.filter((item) => state[item.id] !== 'na');
         const ready = criteria.filter((item) => state[item.id] === 'ready').length;
@@ -1521,6 +1661,7 @@
         updateSummary();
       }
 
+      renderCertifiedFarmGallery();
       renderSections();
       updateOverviewStats();
       syncUi();
