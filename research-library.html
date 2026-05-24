@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>คลังวิจัย - ฟาร์มหมูหลุม</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+    <!-- Luxury Green theme overrides -->
+    <link rel="stylesheet" href="assets/css/theme-lux-green.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <style>
+      .research-shell {
+        padding: 80px 0 90px;
+        background:
+          radial-gradient(circle at top left, rgba(15, 81, 50, 0.08), transparent 36%),
+          linear-gradient(180deg, #fcfffb 0%, #f3f6ef 100%);
+      }
+
+      .featured-research-card,
+      .research-list-card {
+        background: rgba(255, 255, 255, 0.97);
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        border-radius: 28px;
+        box-shadow: 0 20px 44px rgba(15, 81, 50, 0.1);
+      }
+
+      .featured-research-card {
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .featured-research-card .image img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+      }
+
+      .featured-research-card .content {
+        padding: 28px;
+      }
+
+      .featured-research-card .meta-row,
+      .research-list-item .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        margin: 16px 0 14px;
+        color: #5c6b61;
+      }
+
+      .featured-research-card .meta-row span,
+      .research-list-item .meta-row span {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .featured-research-card h4,
+      .research-list-item h5 {
+        color: #113f2f;
+        margin-bottom: 12px;
+      }
+
+      .featured-research-card p,
+      .research-list-item p,
+      .research-intro {
+        color: #55655b;
+        line-height: 1.8;
+      }
+
+      .research-list-card {
+        padding: 30px;
+        margin-top: 34px;
+      }
+
+      .research-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .research-list-header h3,
+      .research-list-header p {
+        margin: 0;
+      }
+
+      .research-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .research-list-item {
+        display: block;
+        padding: 22px 24px;
+        border-radius: 22px;
+        border: 1px solid rgba(15, 81, 50, 0.09);
+        background: linear-gradient(180deg, rgba(15, 81, 50, 0.03), rgba(15, 81, 50, 0.01));
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .research-list-item:hover {
+        transform: translateY(-3px);
+        border-color: rgba(15, 81, 50, 0.2);
+        box-shadow: 0 12px 28px rgba(15, 81, 50, 0.08);
+      }
+
+      .research-list-item .topline {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 12px;
+      }
+
+      .research-list-header .tag,
+      .research-list-item .tag,
+      .featured-research-card .info {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 13px;
+        border-radius: 999px;
+        background: rgba(15, 81, 50, 0.08);
+        color: #0f5132;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .research-list-item .cta {
+        color: #0f5132;
+        font-weight: 700;
+      }
+
+      .research-empty {
+        display: none;
+        padding: 26px;
+        text-align: center;
+        border-radius: 22px;
+        background: rgba(15, 81, 50, 0.04);
+        color: #4f5f56;
+      }
+
+      @media (max-width: 991px) {
+        .research-shell {
+          padding: 65px 0 80px;
+        }
+
+        .research-list-header,
+        .research-list-item .topline {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="assets/images/logo.png" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="index.html">หน้าแรก</a></li>
+                        <li><a href="project-about.html">เกี่ยวกับเรา</a></li>
+                        <li><a href="learning-center.html">การเรียนรู้</a></li>
+                        <li><a href="research-library.html">คลังวิจัย</a></li>
+                        <li><a href="member-directory.html">รายชื่อสมาชิก</a></li>
+                        <li><a href="farm-self-check.html">ประเมินฟาร์มเบื้องต้น</a></li>
+                    </ul>
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4>คลังวิจัยและองค์ความรู้</h4>
+          <h2>รวมงานวิจัยและกรณีศึกษาที่เกี่ยวข้องกับหมูหลุม</h2>
+          <div class="border-button"><a href="project-about.html">เรียนรู้เกี่ยวกับทีมวิจัย</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-form">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <form role="search" action="#">
+            <div class="row">
+              <div class="col-lg-3">
+                <h4>กรองหัวข้อ:</h4>
+              </div>
+              <div class="col-lg-4">
+                  <fieldset>
+                      <select id="researchTopic" class="form-select">
+                          <option value="" selected>เลือกหมวดประเด็น</option>
+                          <option value="efficiency">ประสิทธิภาพการเลี้ยง</option>
+                          <option value="microbiology">จุลินทรีย์/กลิ่น</option>
+                          <option value="moisture">ความชื้น/สิ่งแวดล้อม</option>
+                          <option value="farm">โรงเรือน</option>
+                          <option value="sustainability">โมเดลฟาร์มยั่งยืน</option>
+                      </select>
+                  </fieldset>
+              </div>
+              <div class="col-lg-5">
+                  <fieldset>
+                      <input type="text" id="researchKeyword" class="form-control" placeholder="ค้นหาด้วยคำหลัก (เช่น กลิ่น, จุลินทรีย์, ความชื้น)">
+                  </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="research-shell">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="section-heading text-center mb-5">
+            <h2>งานวิจัยล่าสุดและรายการวิจัยทั้งหมด</h2>
+            <p class="research-intro">แสดงงานวิจัยล่าสุดแบบภาพขนาดใหญ่เพียงไม่กี่รายการ และสรุปรายการที่เหลือในรูปแบบลิสต์ เพื่อให้หน้าไม่ยาวเกินไปเมื่อมีงานวิจัยเพิ่มขึ้น</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="featuredResearchSection" class="row g-4">
+        <div class="col-lg-6 research-entry" data-topic="sustainability farm" data-keywords="ฟาร์มยั่งยืน ลดต้นทุน โมเดลฟาร์ม หมูหลุม">
+          <article class="featured-research-card">
+            <div class="image">
+              <img src="assets/images/res-3.jpg" alt="โมเดลฟาร์มหมูหลุมยั่งยืน">
+            </div>
+            <div class="content">
+              <span class="info"><i class="fa fa-star"></i> งานวิจัยล่าสุด</span>
+              <h4>โมเดลฟาร์มหมูหลุมยั่งยืน</h4>
+              <div class="meta-row">
+                <span><i class="fa fa-calendar"></i> เมษายน 2568</span>
+                <span><i class="fa fa-folder-open"></i> โมเดลฟาร์มยั่งยืน</span>
+              </div>
+              <p>สรุปการออกแบบและผลลัพธ์ของโมเดลฟาร์มหมูหลุมเพื่อความยั่งยืน ช่วยลดต้นทุนการผลิตและพัฒนาการจัดการฟาร์มอย่างเป็นระบบ.</p>
+              <div class="main-button">
+                <a class="btn-compact" href="research/res-3.html">อ่านรายละเอียด</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="col-lg-6 research-entry" data-topic="moisture farm" data-keywords="ความชื้น กลิ่น วัสดุรองพื้น ภาคสนาม หมูหลุม">
+          <article class="featured-research-card">
+            <div class="image">
+              <img src="assets/images/res-1.jpg" alt="การจัดการความชื้นในหมูหลุม">
+            </div>
+            <div class="content">
+              <span class="info"><i class="fa fa-star"></i> งานวิจัยล่าสุด</span>
+              <h4>การจัดการความชื้นในหมูหลุม</h4>
+              <div class="meta-row">
+                <span><i class="fa fa-calendar"></i> มีนาคม 2568</span>
+                <span><i class="fa fa-folder-open"></i> ความชื้นและสิ่งแวดล้อม</span>
+              </div>
+              <p>รวมแนวทางปฏิบัติและผลการทดลองภาคสนามเพื่อควบคุมความชื้นในคอก ลดกลิ่น และช่วยให้สภาพแวดล้อมในฟาร์มมีเสถียรภาพมากขึ้น.</p>
+              <div class="main-button">
+                <a class="btn-compact" href="research/res-1.html">อ่านรายละเอียด</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div id="researchListSection" class="research-list-card">
+        <div class="research-list-header">
+          <div>
+            <h3>รายการวิจัยทั้งหมด</h3>
+            <p>รายการที่เหลือจะแสดงเป็นลิสต์แบบย่อ เพื่อให้เลื่อนดูและค้นหาได้เร็วขึ้น</p>
+          </div>
+          <span class="tag">รูปแบบลิสต์สำหรับงานวิจัยจำนวนมาก</span>
+        </div>
+
+        <div id="researchList" class="research-list">
+          <a class="research-list-item research-entry" data-topic="microbiology farm" data-keywords="จุลินทรีย์ กลิ่น วัสดุรองพื้น หมูหลุม" href="research/res-2.html">
+            <div class="topline">
+              <span class="tag">งานวิจัยภาคสนาม</span>
+              <span class="cta">อ่านรายละเอียด <i class="fa fa-angle-right"></i></span>
+            </div>
+            <h5>เปรียบเทียบคอกสุกรแบบอุโมง vs คอกสุกรระบบคอมไพน์เมนต์</h5>
+            <div class="meta-row">
+              <span><i class="fa fa-calendar"></i> กุมภาพันธ์ 2568</span>
+              <span><i class="fa fa-folder-open"></i> จุลินทรีย์และกลิ่น</span>
+            </div>
+            <p>วิเคราะห์ความหลากหลายของจุลินทรีย์ในวัสดุรองพื้นและบทบาทในการลดกลิ่น เพื่อปรับปรุงสภาพแวดล้อมในคอกสุกร.</p>
+          </a>
+
+          <a class="research-list-item research-entry" data-topic="efficiency farm" data-keywords="โรงเรือน คอกสุกร ระบบปิด ประสิทธิภาพ ต้นทุน" href="research/res-1.html">
+            <div class="topline">
+              <span class="tag">งานวิจัยภาคสนาม</span>
+              <span class="cta">อ่านรายละเอียด <i class="fa fa-angle-right"></i></span>
+            </div>
+            <h5>เปรียบเทียบคอกสุกรแบบอุโมง vs คอกสุกรระบบปิด</h5>
+            <div class="meta-row">
+              <span><i class="fa fa-calendar"></i> มกราคม 2568</span>
+              <span><i class="fa fa-folder-open"></i> โรงเรือน</span>
+            </div>
+            <p>ศึกษาความคุ้มทุน โครงสร้างโรงเรือน และผลกระทบต่อการจัดการฟาร์ม เมื่อเปรียบเทียบระหว่างระบบเลี้ยงที่ต่างกัน.</p>
+          </a>
+        </div>
+
+        <div id="researchEmptyState" class="research-empty">
+          ไม่พบงานวิจัยที่ตรงกับเงื่อนไขการค้นหา ลองเปลี่ยนหมวดหรือคำค้นอีกครั้ง
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>© ฟาร์มหมูหลุม 2025<br>คลังความรู้และงานวิจัยเพื่อการพัฒนาฟาร์ม</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/isotope.min.js"></script>
+  <script src="assets/js/owl-carousel.js"></script>
+  <script src="assets/js/wow.js"></script>
+  <script src="assets/js/tabs.js"></script>
+  <script src="assets/js/popup.js"></script>
+  <script src="assets/js/custom.js"></script>
+
+  <script>
+    (function($){
+      const $topic = $('#researchTopic');
+      const $keyword = $('#researchKeyword');
+      const $items = $('.research-entry');
+      const $featuredSection = $('#featuredResearchSection');
+      const $listSection = $('#researchListSection');
+      const $list = $('#researchList');
+      const $empty = $('#researchEmptyState');
+      function applyFilters(){
+        const tVal = $topic.val();
+        const kw = ($keyword.val() || '').toLowerCase().trim();
+        let visibleCount = 0;
+        let featuredVisible = 0;
+        let listVisible = 0;
+        $items.each(function(){
+          const $it = $(this);
+          const topics = String($it.data('topic') || '').split(/\s+/).filter(Boolean);
+          const matchTopic = !tVal || topics.indexOf(tVal) !== -1;
+          const searchableText = ($it.text() + ' ' + ($it.data('keywords') || '')).toLowerCase();
+          const matchKw = !kw || searchableText.indexOf(kw) !== -1;
+          const isMatch = matchTopic && matchKw;
+          $it.toggle(isMatch);
+          if (isMatch) {
+            visibleCount += 1;
+            if ($it.closest('#featuredResearchSection').length) {
+              featuredVisible += 1;
+            }
+            if ($it.closest('#researchList').length) {
+              listVisible += 1;
+            }
+          }
+        });
+        $featuredSection.toggle(featuredVisible > 0);
+        $list.toggle(listVisible > 0);
+        $listSection.toggle(listVisible > 0 || visibleCount === 0);
+        $empty.toggle(visibleCount === 0);
+      }
+      $topic.on('change', applyFilters);
+      $keyword.on('input', applyFilters);
+      applyFilters();
+    })(jQuery);
+  </script>
+
+  <script>
+    $(".option").click(function(){
+      $(".option").removeClass("active");
+      $(this).addClass("active"); 
+    });
+  </script>
+
+  </body>
+
+</html>
+
