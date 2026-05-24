@@ -36,6 +36,67 @@
         margin: 0 auto;
         line-height: 1.8;
       }
+
+      .upcoming-seminar-panel {
+        margin: 34px 0 12px;
+        padding: 30px 32px;
+        border-radius: 28px;
+        background:
+          linear-gradient(135deg, rgba(15, 81, 50, 0.96), rgba(32, 96, 66, 0.9)),
+          radial-gradient(circle at top right, rgba(195, 146, 46, 0.24), transparent 32%);
+        color: #fff;
+        box-shadow: 0 22px 52px rgba(15, 81, 50, 0.16);
+      }
+
+      .upcoming-seminar-panel h3,
+      .upcoming-seminar-panel p,
+      .upcoming-seminar-panel strong {
+        color: #fff;
+      }
+
+      .upcoming-seminar-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .upcoming-seminar-meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .upcoming-seminar-meta .meta-box {
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .upcoming-seminar-meta .meta-box span {
+        display: block;
+        font-size: 13px;
+        opacity: 0.82;
+        margin-bottom: 6px;
+      }
+
+      .upcoming-seminar-meta .meta-box strong {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 991px) {
+        .upcoming-seminar-meta {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
 <!--
 
@@ -149,6 +210,26 @@ https://templatemo.com/tm-580-woox-travel
   </div>
   <div class="amazing-deals">
     <div class="container">
+      <div class="upcoming-seminar-panel">
+        <span class="upcoming-seminar-chip"><i class="fa fa-bullhorn"></i> สัมมนาที่กำลังจะเปิดรับ</span>
+        <h3 style="margin:18px 0 12px;">Upcoming Seminar</h3>
+        <p style="margin:0;line-height:1.9;">ขณะนี้ยังไม่มีการประกาศวันอบรมรอบถัดไปอย่างเป็นทางการ ส่วนนี้ถูกเพิ่มไว้สำหรับแสดงกำหนดการอบรมครั้งใหม่ เมื่อมีข้อมูลสามารถอัปเดตหัวข้อ วันเวลา สถานที่ และลิงก์ลงทะเบียนได้ทันที</p>
+        <div class="upcoming-seminar-meta">
+          <div class="meta-box">
+            <span>หัวข้อรอบถัดไป</span>
+            <strong>รอประกาศจากโครงการ</strong>
+          </div>
+          <div class="meta-box">
+            <span>วันและเวลา</span>
+            <strong>จะอัปเดตในหน้านี้</strong>
+          </div>
+          <div class="meta-box">
+            <span>สถานะ</span>
+            <strong>เตรียมเปิดรับสมัคร</strong>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="section-heading text-center">
