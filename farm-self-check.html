@@ -362,6 +362,50 @@
         font-weight: 600;
       }
 
+      .pending-tracker {
+        margin-top: 18px;
+        padding: 18px;
+        border-radius: 20px;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        background: #fbfdfc;
+      }
+
+      .pending-jump-button {
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(15, 81, 50, 0.14);
+        background: var(--check-forest);
+        color: #fff;
+        font-weight: 600;
+        margin-top: 12px;
+      }
+
+      .pending-jump-button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      .pending-link-list {
+        margin-top: 14px;
+      }
+
+      .pending-link {
+        width: 100%;
+        text-align: left;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        background: #fff;
+        color: var(--check-ink);
+        font-size: 14px;
+      }
+
+      .pending-link:hover {
+        border-color: rgba(15, 81, 50, 0.24);
+        color: var(--check-forest);
+      }
+
       .section-card {
         padding: 24px;
         margin-top: 24px;
@@ -435,6 +479,11 @@
         border-color: rgba(107, 114, 128, 0.22);
         box-shadow: none;
         background: #fafafa;
+      }
+
+      .criteria-card.focus-target {
+        border-color: rgba(15, 81, 50, 0.42);
+        box-shadow: 0 0 0 4px rgba(15, 81, 50, 0.12), 0 24px 42px rgba(15, 81, 50, 0.16);
       }
 
       .criteria-head {
@@ -879,6 +928,13 @@
                 </div>
               </div>
               <button id="reset-assessment" class="reset-button" type="button">ล้างผลการประเมิน</button>
+
+              <div class="pending-tracker">
+                <h5 style="color:#0f5132;">รายการที่ยังไม่คลิก</h5>
+                <p style="font-size:14px;">กดปุ่มหรือเลือกรายการด้านล่างเพื่อย้อนกลับไปยังข้อที่ยังไม่ได้เลือกสถานะ</p>
+                <button id="next-pending-button" class="pending-jump-button" type="button">ไปข้อที่ยังไม่คลิกถัดไป</button>
+                <ol id="pending-item-list" class="suggestion-list pending-link-list"></ol>
+              </div>
 
               <div style="margin-top:24px;">
                 <h5 style="color:#0f5132;">รายการที่ควรทำต่อ</h5>
@@ -1475,7 +1531,7 @@
       function renderCriteriaCard(item) {
         const displayCode = criteriaDisplayCodeById[item.id] || item.code;
         return `
-          <article class="criteria-card ${item.optional ? 'optional' : ''}" data-item-id="${item.id}" data-state="">
+          <article id="criteria-${item.id}" class="criteria-card ${item.optional ? 'optional' : ''}" data-item-id="${item.id}" data-state="">
             <div class="criteria-head">
               <div>
                 <span class="criteria-code">${escapeHtml(displayCode)}</span>
@@ -1689,6 +1745,46 @@
         list.innerHTML = suggestions.slice(0, 12).map((item) => `<li>${escapeHtml(item.text)}</li>`).join('');
       }
 
+      function scrollToCriteria(itemId) {
+        const card = document.getElementById(`criteria-${itemId}`);
+        if (!card) {
+          return;
+        }
+
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('focus-target');
+        window.setTimeout(() => {
+          card.classList.remove('focus-target');
+        }, 1800);
+      }
+
+      function updatePendingTracker() {
+        const pendingItems = criteria.filter((item) => !state[item.id]);
+        const button = document.getElementById('next-pending-button');
+        const list = document.getElementById('pending-item-list');
+        if (!button || !list) {
+          return;
+        }
+
+        button.disabled = pendingItems.length === 0;
+        button.textContent = pendingItems.length
+          ? `ไปข้อที่ยังไม่คลิกถัดไป (${pendingItems.length})`
+          : 'คลิกครบทุกข้อแล้ว';
+
+        if (!pendingItems.length) {
+          list.innerHTML = '<li>ทุกรายการถูกเลือกสถานะแล้ว</li>';
+          return;
+        }
+
+        list.innerHTML = pendingItems.slice(0, 10).map((item) => `
+          <li>
+            <button type="button" class="pending-link" data-pending-item-id="${escapeHtml(item.id)}">
+              ${escapeHtml(criteriaDisplayCodeById[item.id] || item.code)} ${escapeHtml(item.title)}
+            </button>
+          </li>
+        `).join('');
+      }
+
       function updateCards() {
         criteria.forEach((item) => {
           const card = document.querySelector(`.criteria-card[data-item-id="${item.id}"]`);
@@ -1741,6 +1837,7 @@
       function syncUi() {
         updateCards();
         updateSummary();
+        updatePendingTracker();
       }
 
       renderCertifiedFarmGallery();
@@ -1754,6 +1851,13 @@
         if (farmLink) {
           event.preventDefault();
           selectCertifiedFarm(farmLink.dataset.certifiedFarmId);
+          return;
+        }
+
+        const pendingLink = event.target.closest('[data-pending-item-id]');
+        if (pendingLink) {
+          event.preventDefault();
+          scrollToCriteria(pendingLink.dataset.pendingItemId);
           return;
         }
 
@@ -1775,6 +1879,13 @@
       document.getElementById('reset-assessment').addEventListener('click', () => {
         Object.keys(state).forEach((key) => delete state[key]);
         syncUi();
+      });
+
+      document.getElementById('next-pending-button').addEventListener('click', () => {
+        const nextPending = criteria.find((item) => !state[item.id]);
+        if (nextPending) {
+          scrollToCriteria(nextPending.id);
+        }
       });
     </script>
   </body>
