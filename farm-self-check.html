@@ -140,77 +140,47 @@
       .certified-farm-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .certified-farm-card {
-        overflow: hidden;
-        border-radius: 24px;
-        border: 1px solid rgba(15, 81, 50, 0.1);
-        background: linear-gradient(180deg, #ffffff 0%, #fbfdf9 100%);
-        box-shadow: 0 16px 34px rgba(15, 81, 50, 0.08);
-        transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-      }
-
-      .certified-farm-card:hover,
-      .certified-farm-card.active {
-        transform: translateY(-3px);
-        border-color: rgba(15, 81, 50, 0.28);
-        box-shadow: 0 22px 38px rgba(15, 81, 50, 0.14);
-      }
-
-      .certified-farm-media {
-        position: relative;
-        display: block;
-        overflow: hidden;
-      }
-
-      .certified-farm-media img {
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        object-fit: cover;
-        transition: transform 0.25s ease;
-      }
-
-      .certified-farm-card:hover .certified-farm-media img {
-        transform: scale(1.03);
-      }
-
-      .certified-farm-badge {
-        position: absolute;
-        left: 16px;
-        top: 16px;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(15, 81, 50, 0.84);
-        color: #fff;
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .certified-farm-body {
-        padding: 18px 20px 20px;
-      }
-
-      .certified-farm-body h4 {
-        color: var(--check-forest);
-        margin-bottom: 6px;
-      }
-
-      .certified-farm-body p {
-        color: var(--check-muted);
-        margin-bottom: 14px;
+        gap: 12px;
       }
 
       .certified-farm-link {
-        display: inline-flex;
+        display: flex;
         align-items: center;
-        gap: 8px;
-        color: var(--check-forest);
+        justify-content: space-between;
+        gap: 14px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(15, 81, 50, 0.12);
+        background: #fff;
+        color: var(--check-ink);
         font-weight: 600;
+        box-shadow: 0 10px 24px rgba(15, 81, 50, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .certified-farm-link:hover,
+      .certified-farm-link.active {
+        transform: translateY(-2px);
+        border-color: rgba(15, 81, 50, 0.28);
+        box-shadow: 0 16px 28px rgba(15, 81, 50, 0.12);
+        color: var(--check-forest);
+      }
+
+      .certified-farm-link strong {
+        display: block;
+        color: inherit;
+        margin-bottom: 4px;
+      }
+
+      .certified-farm-link span {
+        display: block;
+        color: var(--check-muted);
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .certified-farm-link i {
+        flex: 0 0 auto;
       }
 
       .certified-detail-panel {
@@ -711,12 +681,12 @@
           flex-direction: column;
         }
 
-        .certified-farm-grid {
-          grid-template-columns: minmax(0, 1fr);
-        }
-
         .certified-detail-grid {
           grid-template-columns: 1fr;
+        }
+
+        .certified-farm-grid {
+          grid-template-columns: minmax(0, 1fr);
         }
       }
     </style>
@@ -827,8 +797,7 @@
                 <span class="section-tag"><i class="fa fa-camera-retro"></i> 14 ชุดภาพ</span>
               </div>
               <p class="certified-showcase-note">
-                ภาพชุดนี้มาจากฟาร์มที่ผ่านการจัดเตรียมหลักฐานแล้ว ช่วยให้เห็นสภาพป้ายฟาร์ม ผู้ประกอบการ และบรรยากาศหน้างานจริง
-                คลิกที่การ์ดฟาร์มเพื่อเปิดดูภาพทั้งหมดของฟาร์มนั้น
+                ภาพชุดนี้มาจากฟาร์มที่ผ่านการจัดเตรียมหลักฐานแล้ว ให้คลิกชื่อฟาร์มจากรายการด้านล่างเพื่อเปิดดูภาพทั้งหมดของฟาร์มนั้น
               </p>
               <div class="certified-farm-grid" id="certified-farm-gallery"></div>
               <section class="section-card certified-detail-panel" id="certified-farm-detail" hidden>
@@ -861,7 +830,7 @@
                 <span class="criteria-code">ภาพสนับสนุนเพิ่มเติม</span>
                 <h4>คอกพักสัตว์ป่วย</h4>
                 <p>
-                  แม้ไม่อยู่ในรายการบังคับข้อ 7-33 โดยตรง แต่การมีพื้นที่แยกสัตว์ป่วยจะช่วยให้จัดการโรคและสุขภาพสัตว์ได้ดีขึ้น
+                  แม้ไม่อยู่ในรายการบังคับของหน้านี้โดยตรง แต่การมีพื้นที่แยกสัตว์ป่วยจะช่วยให้จัดการโรคและสุขภาพสัตว์ได้ดีขึ้น
                 </p>
                 <div class="reference-strip">
                   <a class="reference-thumb" href="assets/images/farm-check-real/sick-pen.png" target="_blank" rel="noopener">
@@ -1449,7 +1418,8 @@
       };
 
       const state = Object.create(null);
-      let selectedCertifiedFarmId = certifiedFarmExamples[0] ? certifiedFarmExamples[0].id : null;
+      const criteriaDisplayCodeById = Object.fromEntries(criteria.map((item, index) => [item.id, `ข้อ ${index + 1}`]));
+      let selectedCertifiedFarmId = null;
 
       function escapeHtml(text) {
         return String(text)
@@ -1503,11 +1473,12 @@
       }
 
       function renderCriteriaCard(item) {
+        const displayCode = criteriaDisplayCodeById[item.id] || item.code;
         return `
           <article class="criteria-card ${item.optional ? 'optional' : ''}" data-item-id="${item.id}" data-state="">
             <div class="criteria-head">
               <div>
-                <span class="criteria-code">${escapeHtml(item.code)}</span>
+                <span class="criteria-code">${escapeHtml(displayCode)}</span>
                 <h4>${escapeHtml(item.title)}</h4>
                 <p>${escapeHtml(item.requirement)}</p>
               </div>
@@ -1554,20 +1525,13 @@
         }
 
         container.innerHTML = certifiedFarmExamples.map((item) => `
-          <article class="certified-farm-card ${item.id === selectedCertifiedFarmId ? 'active' : ''}">
-            <a class="certified-farm-media" href="#certified-farm-detail" data-certified-farm-id="${escapeHtml(item.id)}">
-              <img src="${escapeHtml(item.image)}" alt="ตัวอย่างฟาร์มที่ผ่านการรับรอง ${escapeHtml(item.name)}" loading="lazy">
-              <span class="certified-farm-badge"><i class="fa fa-check-circle"></i> ผ่านการรับรอง</span>
-            </a>
-            <div class="certified-farm-body">
-              <h4>ตัวอย่างฟาร์ม ${escapeHtml(item.name)}</h4>
-              <p>ภาพอ้างอิงจากชุดฟาร์มที่จัดหลักฐานครบ ใช้ดูแนวทางการถ่ายภาพและการจัดสภาพหน้างานจริง มีทั้งหมด ${item.images.length} ภาพ</p>
-              <a class="certified-farm-link" href="#certified-farm-detail" data-certified-farm-id="${escapeHtml(item.id)}">
-                <i class="fa fa-search-plus"></i>
-                ดูภาพทั้งฟาร์ม
-              </a>
+          <a class="certified-farm-link ${item.id === selectedCertifiedFarmId ? 'active' : ''}" href="#certified-farm-detail" data-certified-farm-id="${escapeHtml(item.id)}">
+            <div>
+              <strong>ฟาร์ม ${escapeHtml(item.name)}</strong>
+              <span>มีภาพอ้างอิงทั้งหมด ${item.images.length} ภาพ</span>
             </div>
-          </article>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </a>
         `).join('');
       }
 
@@ -1583,7 +1547,7 @@
           return;
         }
 
-        const farm = certifiedFarmExamples.find((item) => item.id === selectedCertifiedFarmId) || certifiedFarmExamples[0];
+        const farm = certifiedFarmExamples.find((item) => item.id === selectedCertifiedFarmId);
         if (!farm) {
           section.hidden = true;
           return;
@@ -1692,20 +1656,20 @@
         const suggestions = [];
 
         missingItems.forEach((item) => {
-          suggestions.push({ priority: 1, text: `${item.code} ${item.title}: ${item.action}` });
+          suggestions.push({ priority: 1, text: `${criteriaDisplayCodeById[item.id] || item.code} ${item.title}: ${item.action}` });
         });
 
         partialItems.forEach((item) => {
           suggestions.push({
             priority: 2,
-            text: `${item.code} ${item.title}: ตรวจรายละเอียดให้ครบ โดยเฉพาะ ${item.hints[0].toLowerCase()}`
+            text: `${criteriaDisplayCodeById[item.id] || item.code} ${item.title}: ตรวจรายละเอียดให้ครบ โดยเฉพาะ ${item.hints[0].toLowerCase()}`
           });
         });
 
         pendingItems.forEach((item) => {
           suggestions.push({
             priority: 3,
-            text: `${item.code} ${item.title}: ยังไม่ได้ประเมินรายการนี้ ควรเช็กหน้างานและเลือกสถานะให้ครบ`
+            text: `${criteriaDisplayCodeById[item.id] || item.code} ${item.title}: ยังไม่ได้ประเมินรายการนี้ ควรเช็กหน้างานและเลือกสถานะให้ครบ`
           });
         });
 
