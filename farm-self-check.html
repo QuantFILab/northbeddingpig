@@ -149,6 +149,14 @@
         border: 1px solid rgba(15, 81, 50, 0.1);
         background: linear-gradient(180deg, #ffffff 0%, #fbfdf9 100%);
         box-shadow: 0 16px 34px rgba(15, 81, 50, 0.08);
+        transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      }
+
+      .certified-farm-card:hover,
+      .certified-farm-card.active {
+        transform: translateY(-3px);
+        border-color: rgba(15, 81, 50, 0.28);
+        box-shadow: 0 22px 38px rgba(15, 81, 50, 0.14);
       }
 
       .certified-farm-media {
@@ -203,6 +211,65 @@
         gap: 8px;
         color: var(--check-forest);
         font-weight: 600;
+      }
+
+      .certified-detail-panel {
+        margin-top: 20px;
+      }
+
+      .certified-detail-panel[hidden] {
+        display: none !important;
+      }
+
+      .certified-detail-note {
+        color: var(--check-muted);
+        margin-bottom: 22px;
+      }
+
+      .certified-detail-feature {
+        display: block;
+        overflow: hidden;
+        border-radius: 24px;
+        margin-bottom: 18px;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        box-shadow: 0 16px 34px rgba(15, 81, 50, 0.08);
+      }
+
+      .certified-detail-feature img {
+        width: 100%;
+        max-height: 520px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .certified-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .certified-detail-thumb {
+        display: block;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid rgba(15, 81, 50, 0.1);
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(15, 81, 50, 0.08);
+      }
+
+      .certified-detail-thumb img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .certified-detail-thumb span {
+        display: block;
+        padding: 12px 14px 14px;
+        color: var(--check-ink);
+        font-size: 14px;
+        font-weight: 500;
       }
 
       .score-card {
@@ -611,6 +678,10 @@
         .score-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        .certified-detail-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
       }
 
       @media (max-width: 767.98px) {
@@ -642,6 +713,10 @@
 
         .certified-farm-grid {
           grid-template-columns: minmax(0, 1fr);
+        }
+
+        .certified-detail-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -737,8 +812,8 @@
                   <span>รายการที่มีภาพตัวอย่างประกอบ</span>
                 </div>
                 <div class="mini-stat">
-                  <strong id="missing-image-count">0</strong>
-                  <span>รายการที่ยังไม่มีภาพอ้างอิงในไฟล์</span>
+                  <strong id="reference-image-count">0</strong>
+                  <span>จำนวนภาพอ้างอิงทั้งหมด</span>
                 </div>
               </div>
             </section>
@@ -753,8 +828,23 @@
               </div>
               <p class="certified-showcase-note">
                 ภาพชุดนี้มาจากฟาร์มที่ผ่านการจัดเตรียมหลักฐานแล้ว ช่วยให้เห็นสภาพป้ายฟาร์ม ผู้ประกอบการ และบรรยากาศหน้างานจริง
+                คลิกที่การ์ดฟาร์มเพื่อเปิดดูภาพทั้งหมดของฟาร์มนั้น
               </p>
               <div class="certified-farm-grid" id="certified-farm-gallery"></div>
+              <section class="section-card certified-detail-panel" id="certified-farm-detail" hidden>
+                <div class="section-heading-row">
+                  <div>
+                    <h3 id="certified-detail-title">ภาพทั้งหมดของฟาร์มตัวอย่าง</h3>
+                    <p id="certified-detail-summary">เลือกฟาร์มด้านบนเพื่อดูชุดภาพทั้งหมดของฟาร์มนั้น</p>
+                  </div>
+                  <span class="section-tag" id="certified-detail-count"><i class="fa fa-image"></i> 0 ภาพ</span>
+                </div>
+                <p class="certified-detail-note">คลิกภาพย่อยเพื่อเปิดภาพเต็มแยกต่างหาก และใช้เลื่อนดูวิธีจัดหลักฐานของฟาร์มเดียวกันให้ครบทุกข้อ</p>
+                <a class="certified-detail-feature" id="certified-detail-feature-link" href="#" target="_blank" rel="noopener">
+                  <img id="certified-detail-feature-image" src="" alt="">
+                </a>
+                <div class="certified-detail-grid" id="certified-farm-detail-gallery"></div>
+              </section>
             </section>
 
             <div id="criteria-sections"></div>
@@ -880,50 +970,30 @@
         }
       ];
 
+      function buildCertifiedFarmImages(farmName, lastSlide) {
+        return Array.from({ length: Math.max(lastSlide - 1, 0) }, (_, index) =>
+          `assets/images/certified-farms/${farmName}/Slide${index + 2}.PNG`
+        );
+      }
+
       const certifiedFarmExamples = [
-        { name: 'กอบแก้ว', image: 'assets/images/certified-farms/กอบแก้ว/Slide2.PNG' },
-        { name: 'จินตนา', image: 'assets/images/certified-farms/จินตนา/Slide2.PNG' },
-        { name: 'ณิชากร', image: 'assets/images/certified-farms/ณิชากร/Slide2.PNG' },
-        { name: 'นิภาพร', image: 'assets/images/certified-farms/นิภาพร/Slide2.PNG' },
-        { name: 'บุญทอง', image: 'assets/images/certified-farms/บุญทอง/Slide2.PNG' },
-        { name: 'เบอะชิ', image: 'assets/images/certified-farms/เบอะชิ/Slide2.PNG' },
-        { name: 'ประพันธ์', image: 'assets/images/certified-farms/ประพันธ์/Slide2.PNG' },
-        { name: 'ผ่องพรรณ', image: 'assets/images/certified-farms/ผ่องพรรณ/Slide2.PNG' },
-        { name: 'เพ็ญนภา', image: 'assets/images/certified-farms/เพ็ญนภา/Slide2.PNG' },
-        { name: 'รุ่งนภา', image: 'assets/images/certified-farms/รุ่งนภา/Slide2.PNG' },
-        { name: 'วอดี', image: 'assets/images/certified-farms/วอดี/Slide2.PNG' },
-        { name: 'สมเพชร', image: 'assets/images/certified-farms/สมเพชร/Slide2.PNG' },
-        { name: 'สุกัญญา', image: 'assets/images/certified-farms/สุกัญญา/Slide2.PNG' },
-        { name: 'อัศนี', image: 'assets/images/certified-farms/อัศนี/Slide2.PNG' }
+        { id: 'kobkaew', name: 'กอบแก้ว', image: 'assets/images/certified-farms/กอบแก้ว/Slide2.PNG', images: buildCertifiedFarmImages('กอบแก้ว', 23) },
+        { id: 'jintana', name: 'จินตนา', image: 'assets/images/certified-farms/จินตนา/Slide2.PNG', images: buildCertifiedFarmImages('จินตนา', 19) },
+        { id: 'nichakorn', name: 'ณิชากร', image: 'assets/images/certified-farms/ณิชากร/Slide2.PNG', images: buildCertifiedFarmImages('ณิชากร', 22) },
+        { id: 'nipaporn', name: 'นิภาพร', image: 'assets/images/certified-farms/นิภาพร/Slide2.PNG', images: buildCertifiedFarmImages('นิภาพร', 24) },
+        { id: 'boonthong', name: 'บุญทอง', image: 'assets/images/certified-farms/บุญทอง/Slide2.PNG', images: buildCertifiedFarmImages('บุญทอง', 21) },
+        { id: 'boechi', name: 'เบอะชิ', image: 'assets/images/certified-farms/เบอะชิ/Slide2.PNG', images: buildCertifiedFarmImages('เบอะชิ', 22) },
+        { id: 'praphan', name: 'ประพันธ์', image: 'assets/images/certified-farms/ประพันธ์/Slide2.PNG', images: buildCertifiedFarmImages('ประพันธ์', 22) },
+        { id: 'phongphan', name: 'ผ่องพรรณ', image: 'assets/images/certified-farms/ผ่องพรรณ/Slide2.PNG', images: buildCertifiedFarmImages('ผ่องพรรณ', 22) },
+        { id: 'phennapha', name: 'เพ็ญนภา', image: 'assets/images/certified-farms/เพ็ญนภา/Slide2.PNG', images: buildCertifiedFarmImages('เพ็ญนภา', 22) },
+        { id: 'rungnapa', name: 'รุ่งนภา', image: 'assets/images/certified-farms/รุ่งนภา/Slide2.PNG', images: buildCertifiedFarmImages('รุ่งนภา', 23) },
+        { id: 'wadi', name: 'วอดี', image: 'assets/images/certified-farms/วอดี/Slide2.PNG', images: buildCertifiedFarmImages('วอดี', 22) },
+        { id: 'somphet', name: 'สมเพชร', image: 'assets/images/certified-farms/สมเพชร/Slide2.PNG', images: buildCertifiedFarmImages('สมเพชร', 22) },
+        { id: 'sukanya', name: 'สุกัญญา', image: 'assets/images/certified-farms/สุกัญญา/Slide2.PNG', images: buildCertifiedFarmImages('สุกัญญา', 23) },
+        { id: 'asanee', name: 'อัศนี', image: 'assets/images/certified-farms/อัศนี/Slide2.PNG', images: buildCertifiedFarmImages('อัศนี', 25) }
       ];
 
       const criteria = [
-        {
-          id: 'c07',
-          section: 'documents',
-          code: 'ข้อ 7',
-          title: 'แผนที่ตั้งฟาร์มเลี้ยงสัตว์',
-          requirement: 'ต้องมีแผนที่แสดงถนนหลักเข้าสู่หน้าฟาร์มอย่างชัดเจน',
-          hints: [
-            'ระบุเส้นทางจากถนนหลักหรือจุดสังเกตสำคัญให้ถึงหน้าฟาร์ม',
-            'ใช้ภาพจากแผนที่ออนไลน์หรือวาดแผนที่ประกอบก็ได้'
-          ],
-          action: 'จัดทำแผนที่ที่เห็นถนนหลัก จุดเลี้ยว และตำแหน่งหน้าฟาร์มให้พร้อมแนบหลักฐาน',
-          references: []
-        },
-        {
-          id: 'c08',
-          section: 'documents',
-          code: 'ข้อ 8',
-          title: 'แผนผังโรงเรือนและสิ่งก่อสร้างภายในฟาร์ม',
-          requirement: 'ต้องมีผังแสดงตำแหน่งโรงเรือน ประตู จุดฆ่าเชื้อ และอาคารสำคัญภายในฟาร์ม',
-          hints: [
-            'ใส่ตำแหน่งโรงเรือนแต่ละหลัง ทางเดิน และพื้นที่ใช้งานสำคัญ',
-            'ใช้เป็นภาพรวมให้ผู้ตรวจเข้าใจการจัดวางฟาร์ม'
-          ],
-          action: 'เขียนแผนผังฟาร์มให้ครบทุกอาคารและจุดสำคัญ แล้วถ่ายหรือสแกนเก็บเป็นไฟล์',
-          references: []
-        },
         {
           id: 'c10',
           section: 'documents',
@@ -939,6 +1009,10 @@
             {
               src: 'assets/images/farm-check-real/operator-sign.png',
               caption: 'ตัวอย่างป้ายชื่อฟาร์มจากฟาร์มที่ผ่านการรับรอง'
+            },
+            {
+              src: 'assets/images/farm-check-real/operator-sign-2.png',
+              caption: 'ตัวอย่างป้ายชื่อฟาร์มอีกฟาร์มหนึ่งที่ใช้ป้ายตรงตามเอกสาร'
             }
           ]
         },
@@ -957,6 +1031,10 @@
             {
               src: 'assets/images/farm-check-real/operator-sign.png',
               caption: 'ตัวอย่างรูปภาพผู้ประกอบการคู่กับป้ายชื่อฟาร์ม'
+            },
+            {
+              src: 'assets/images/farm-check-real/operator-sign-2.png',
+              caption: 'ตัวอย่างรูปผู้ประกอบการอีกฟาร์มหนึ่งที่ถ่ายคู่กับป้ายฟาร์ม'
             }
           ]
         },
@@ -975,22 +1053,12 @@
             {
               src: 'assets/images/farm-check-real/wide-view.png',
               caption: 'ตัวอย่างภาพมุมกว้างของฟาร์มจริง'
+            },
+            {
+              src: 'assets/images/farm-check-real/wide-view-2.png',
+              caption: 'ตัวอย่างภาพมุมกว้างอีกฟาร์มหนึ่งที่เห็นสภาพพื้นที่โดยรวม'
             }
           ]
-        },
-        {
-          id: 'c14',
-          section: 'documents',
-          code: 'ข้อ 14',
-          title: 'สำนักงานหรือบ้านพักพนักงานภายในฟาร์ม',
-          requirement: 'ถ้ามีพื้นที่นี้ในฟาร์ม ควรถ่ายภาพให้เห็นอาคารและบริเวณใช้งาน',
-          hints: [
-            'ใช้เมื่อฟาร์มมีสำนักงานหรือบ้านพักภายในพื้นที่จริง',
-            'ถ้าไม่มีรายการนี้ ให้เลือกไม่เกี่ยวข้อง'
-          ],
-          action: 'ถ่ายภาพสำนักงานหรือบ้านพักพนักงานให้เห็นสภาพจริงและความสะอาดของพื้นที่',
-          references: [],
-          optional: true
         },
         {
           id: 'c09',
@@ -1007,6 +1075,10 @@
             {
               src: 'assets/images/farm-check-real/gate-fence.png',
               caption: 'ประตูทางเข้าฟาร์มเต็มบานพร้อมป้ายห้ามเข้า'
+            },
+            {
+              src: 'assets/images/farm-check-real/gate-fence-2.png',
+              caption: 'ตัวอย่างประตูและรั้วอีกฟาร์มหนึ่งที่ควบคุมการเข้าออกได้ชัดเจน'
             }
           ]
         },
@@ -1025,6 +1097,10 @@
             {
               src: 'assets/images/farm-check-real/vehicle-disinfection.png',
               caption: 'จุดพ่นยาฆ่าเชื้อพร้อมภาพขณะพ่นน้ำยา'
+            },
+            {
+              src: 'assets/images/farm-check-real/vehicle-disinfection-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของจุดพ่นน้ำยาฆ่าเชื้อก่อนเข้าฟาร์ม'
             }
           ]
         },
@@ -1061,6 +1137,10 @@
             {
               src: 'assets/images/farm-check-real/handwash-station.png',
               caption: 'อ่างล้างมือพร้อมป้ายจากฟาร์มจริง'
+            },
+            {
+              src: 'assets/images/farm-check-real/handwash-station-2.png',
+              caption: 'ตัวอย่างอ่างล้างมืออีกจุดหนึ่งที่จัดอุปกรณ์พร้อมใช้งาน'
             }
           ]
         },
@@ -1079,6 +1159,10 @@
             {
               src: 'assets/images/farm-check-real/footbath.png',
               caption: 'อ่างจุ่มเท้าพร้อมป้ายใช้งานจริง'
+            },
+            {
+              src: 'assets/images/farm-check-real/footbath-2.png',
+              caption: 'ตัวอย่างอ่างจุ่มเท้าอีกฟาร์มหนึ่งที่ติดตั้งหน้าโรงเรือน'
             }
           ]
         },
@@ -1115,6 +1199,10 @@
             {
               src: 'assets/images/farm-check-real/changing-room.png',
               caption: 'ห้องเปลี่ยนเสื้อผ้าหรือห้องสเปรย์พร้อมภาพภายใน'
+            },
+            {
+              src: 'assets/images/farm-check-real/changing-room-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของห้องเปลี่ยนเสื้อผ้าพร้อมป้ายและภาพภายใน'
             }
           ]
         },
@@ -1141,6 +1229,14 @@
             {
               src: 'assets/images/farm-check-real/feed-storage-ceiling.png',
               caption: 'เพดานโรงอาหารปิดมิดชิดพร้อมตาข่ายกันสัตว์พาหะ'
+            },
+            {
+              src: 'assets/images/farm-check-real/feed-storage-front-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของโรงเก็บอาหารด้านนอกพร้อมป้าย'
+            },
+            {
+              src: 'assets/images/farm-check-real/feed-storage-inside-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของจุดวางอาหารที่ยกสูงและแยกจากพื้น'
             }
           ]
         },
@@ -1163,6 +1259,10 @@
             {
               src: 'assets/images/farm-check-real/equipment-storage-inside.png',
               caption: 'ภาพภายในโรงเก็บอุปกรณ์'
+            },
+            {
+              src: 'assets/images/farm-check-real/equipment-storage-front-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของพื้นที่เก็บอุปกรณ์ที่แยกใช้งานชัดเจน'
             }
           ]
         },
@@ -1181,6 +1281,10 @@
             {
               src: 'assets/images/farm-check-real/medical-storage.png',
               caption: 'ที่เก็บเวชภัณฑ์พร้อมภาพภายใน'
+            },
+            {
+              src: 'assets/images/farm-check-real/medical-storage-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของจุดเก็บเวชภัณฑ์พร้อมป้ายกำกับ'
             }
           ]
         },
@@ -1233,21 +1337,12 @@
             {
               src: 'assets/images/farm-check-real/water-storage.png',
               caption: 'ที่เก็บน้ำเลี้ยงสัตว์พร้อมฝาปิด'
+            },
+            {
+              src: 'assets/images/farm-check-real/water-storage-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของที่เก็บน้ำที่ปิดมิดชิดและพร้อมใช้งาน'
             }
           ]
-        },
-        {
-          id: 'c29',
-          section: 'buildings',
-          code: 'ข้อ 29',
-          title: 'สัญญาณเตือนไฟดับหรือเครื่องสำรองไฟ',
-          requirement: 'ต้องมีระบบแจ้งเตือนไฟดับหรือเครื่องสำรองไฟเพื่อรองรับเหตุฉุกเฉิน',
-          hints: [
-            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
-            'ให้ถ่ายภาพอุปกรณ์จริง จุดติดตั้ง หรือแผงควบคุมที่ใช้งานอยู่'
-          ],
-          action: 'เตรียมอุปกรณ์สำรองไฟหรือระบบแจ้งเตือน พร้อมถ่ายจุดติดตั้งให้เห็นชัดเจน',
-          references: []
         },
         {
           id: 'c21',
@@ -1264,6 +1359,10 @@
             {
               src: 'assets/images/farm-check-real/waste-bins.png',
               caption: 'ตัวอย่างถังขยะทั่วไปและถังขยะติดเชื้อพร้อมป้าย'
+            },
+            {
+              src: 'assets/images/farm-check-real/waste-bins-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของถังขยะที่แยกประเภทและติดป้ายชัดเจน'
             }
           ]
         },
@@ -1282,48 +1381,12 @@
             {
               src: 'assets/images/farm-check-real/waste-bins.png',
               caption: 'ตัวอย่างถังขยะติดเชื้อพร้อมป้าย'
+            },
+            {
+              src: 'assets/images/farm-check-real/waste-bins-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของถังขยะติดเชื้อที่มีฝาปิดและป้ายครบ'
             }
           ]
-        },
-        {
-          id: 'c27',
-          section: 'environment',
-          code: 'ข้อ 27',
-          title: 'รางระบายน้ำทิ้งหรือน้ำเสีย',
-          requirement: 'ต้องมีรางระบายน้ำทิ้งหรือน้ำเสียที่จัดการทิศทางน้ำได้ชัดเจน',
-          hints: [
-            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
-            'ควรถ่ายให้เห็นแนวราง การไหล และความสะอาดของจุดใช้งาน'
-          ],
-          action: 'ตรวจรางระบายน้ำให้ใช้งานได้จริง ไม่มีอุดตัน และถ่ายภาพตามแนวทางน้ำ',
-          references: []
-        },
-        {
-          id: 'c30',
-          section: 'environment',
-          code: 'ข้อ 30',
-          title: 'บ่อแก๊สชีวภาพพร้อมป้าย',
-          requirement: 'หากฟาร์มมีบ่อแก๊สชีวภาพ ควรมีภาพบ่อและป้ายประกอบชัดเจน',
-          hints: [
-            'หากฟาร์มไม่มีระบบนี้ ให้เลือกไม่เกี่ยวข้อง',
-            'หากมี ควรถ่ายให้เห็นสภาพใช้งานและป้ายพื้นที่'
-          ],
-          action: 'ถ่ายภาพบ่อแก๊สชีวภาพพร้อมป้าย หรือเลือกไม่เกี่ยวข้องหากฟาร์มไม่มีระบบนี้',
-          references: [],
-          optional: true
-        },
-        {
-          id: 'c31',
-          section: 'environment',
-          code: 'ข้อ 31',
-          title: 'ระบบบำบัดน้ำเสียภายในฟาร์ม',
-          requirement: 'ต้องมีระบบบำบัดน้ำเสียหรือพื้นที่จัดการน้ำเสียภายในฟาร์มที่เห็นการใช้งานชัดเจน',
-          hints: [
-            'ยังไม่มีภาพตัวอย่างใน PowerPoint ชุดนี้',
-            'ควรถ่ายให้เห็นโครงสร้างหรือบ่อพักที่ใช้จริง'
-          ],
-          action: 'เตรียมหลักฐานระบบบำบัดน้ำเสียให้ครบทั้งภาพรวมและจุดใช้งานจริง',
-          references: []
         },
         {
           id: 'c32',
@@ -1340,6 +1403,10 @@
             {
               src: 'assets/images/farm-check-real/carcass-disposal.png',
               caption: 'ตัวอย่างบ่อทิ้งซากหรือเตาเผาซากจากฟาร์มจริง'
+            },
+            {
+              src: 'assets/images/farm-check-real/carcass-disposal-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของจุดกำจัดซากพร้อมป้ายระบุพื้นที่'
             }
           ]
         },
@@ -1358,6 +1425,10 @@
             {
               src: 'assets/images/farm-check-real/manure-yard.png',
               caption: 'ตัวอย่างลานตากมูลพร้อมป้าย'
+            },
+            {
+              src: 'assets/images/farm-check-real/manure-yard-2.png',
+              caption: 'อีกตัวอย่างหนึ่งของลานตากมูลที่แยกพื้นที่ใช้งานชัดเจน'
             }
           ]
         }
@@ -1378,6 +1449,7 @@
       };
 
       const state = Object.create(null);
+      let selectedCertifiedFarmId = certifiedFarmExamples[0] ? certifiedFarmExamples[0].id : null;
 
       function escapeHtml(text) {
         return String(text)
@@ -1394,8 +1466,8 @@
             <div class="reference-strip">
               <div class="reference-thumb placeholder-thumb">
                 <i class="fa fa-image"></i>
-                <strong>ยังไม่มีภาพตัวอย่าง</strong>
-                <span>ใช้รายการนี้เป็นแนวทางถ่ายภาพหรือจัดเตรียมหลักฐานเพิ่มเติม</span>
+                <strong>${escapeHtml(item.missingReferenceTitle || 'ยังไม่มีภาพตัวอย่าง')}</strong>
+                <span>${escapeHtml(item.missingReferenceNote || 'ใช้รายการนี้เป็นแนวทางถ่ายภาพหรือจัดเตรียมหลักฐานเพิ่มเติม')}</span>
               </div>
             </div>
           `;
@@ -1482,21 +1554,71 @@
         }
 
         container.innerHTML = certifiedFarmExamples.map((item) => `
-          <article class="certified-farm-card">
-            <a class="certified-farm-media" href="${escapeHtml(item.image)}" target="_blank" rel="noopener">
+          <article class="certified-farm-card ${item.id === selectedCertifiedFarmId ? 'active' : ''}">
+            <a class="certified-farm-media" href="#certified-farm-detail" data-certified-farm-id="${escapeHtml(item.id)}">
               <img src="${escapeHtml(item.image)}" alt="ตัวอย่างฟาร์มที่ผ่านการรับรอง ${escapeHtml(item.name)}" loading="lazy">
               <span class="certified-farm-badge"><i class="fa fa-check-circle"></i> ผ่านการรับรอง</span>
             </a>
             <div class="certified-farm-body">
               <h4>ตัวอย่างฟาร์ม ${escapeHtml(item.name)}</h4>
-              <p>ภาพอ้างอิงจากชุดฟาร์มที่จัดหลักฐานครบ ใช้ดูแนวทางการถ่ายภาพและการจัดสภาพหน้างานจริง</p>
-              <a class="certified-farm-link" href="${escapeHtml(item.image)}" target="_blank" rel="noopener">
+              <p>ภาพอ้างอิงจากชุดฟาร์มที่จัดหลักฐานครบ ใช้ดูแนวทางการถ่ายภาพและการจัดสภาพหน้างานจริง มีทั้งหมด ${item.images.length} ภาพ</p>
+              <a class="certified-farm-link" href="#certified-farm-detail" data-certified-farm-id="${escapeHtml(item.id)}">
                 <i class="fa fa-search-plus"></i>
-                เปิดภาพเต็ม
+                ดูภาพทั้งฟาร์ม
               </a>
             </div>
           </article>
         `).join('');
+      }
+
+      function renderCertifiedFarmDetail() {
+        const section = document.getElementById('certified-farm-detail');
+        const title = document.getElementById('certified-detail-title');
+        const summary = document.getElementById('certified-detail-summary');
+        const count = document.getElementById('certified-detail-count');
+        const featureLink = document.getElementById('certified-detail-feature-link');
+        const featureImage = document.getElementById('certified-detail-feature-image');
+        const gallery = document.getElementById('certified-farm-detail-gallery');
+        if (!section || !title || !summary || !count || !featureLink || !featureImage || !gallery) {
+          return;
+        }
+
+        const farm = certifiedFarmExamples.find((item) => item.id === selectedCertifiedFarmId) || certifiedFarmExamples[0];
+        if (!farm) {
+          section.hidden = true;
+          return;
+        }
+
+        section.hidden = false;
+        title.textContent = `ภาพทั้งหมดของฟาร์ม ${farm.name}`;
+        summary.textContent = 'ชุดภาพนี้แสดงการจัดหลักฐานของฟาร์มเดียวกันต่อเนื่องหลายจุด ใช้ดูภาพรวมและรูปแบบการถ่ายหลักฐานให้ครบทั้งฟาร์ม';
+        count.innerHTML = `<i class="fa fa-image"></i> ${farm.images.length} ภาพ`;
+        featureLink.href = farm.images[0];
+        featureImage.src = farm.images[0];
+        featureImage.alt = `ภาพหลักของฟาร์ม ${farm.name}`;
+        gallery.innerHTML = farm.images.map((src, index) => `
+          <a class="certified-detail-thumb" href="${escapeHtml(src)}" target="_blank" rel="noopener">
+            <img src="${escapeHtml(src)}" alt="ฟาร์ม ${escapeHtml(farm.name)} ภาพที่ ${index + 1}" loading="lazy">
+            <span>ฟาร์ม ${escapeHtml(farm.name)} ภาพที่ ${index + 1}</span>
+          </a>
+        `).join('');
+      }
+
+      function selectCertifiedFarm(farmId, shouldScroll = true) {
+        if (!certifiedFarmExamples.some((item) => item.id === farmId)) {
+          return;
+        }
+
+        selectedCertifiedFarmId = farmId;
+        renderCertifiedFarmGallery();
+        renderCertifiedFarmDetail();
+
+        if (shouldScroll) {
+          const detail = document.getElementById('certified-farm-detail');
+          if (detail) {
+            detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       }
 
       function computeSummary() {
@@ -1649,7 +1771,7 @@
       function updateOverviewStats() {
         document.getElementById('total-criteria').textContent = criteria.length;
         document.getElementById('with-image-count').textContent = criteria.filter((item) => item.references.length > 0).length;
-        document.getElementById('missing-image-count').textContent = criteria.filter((item) => item.references.length === 0).length;
+        document.getElementById('reference-image-count').textContent = criteria.reduce((sum, item) => sum + item.references.length, 0);
       }
 
       function syncUi() {
@@ -1658,11 +1780,19 @@
       }
 
       renderCertifiedFarmGallery();
+      renderCertifiedFarmDetail();
       renderSections();
       updateOverviewStats();
       syncUi();
 
       document.addEventListener('click', (event) => {
+        const farmLink = event.target.closest('[data-certified-farm-id]');
+        if (farmLink) {
+          event.preventDefault();
+          selectCertifiedFarm(farmLink.dataset.certifiedFarmId);
+          return;
+        }
+
         const button = event.target.closest('.status-btn');
         if (!button) {
           return;
